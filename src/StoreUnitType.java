@@ -9,15 +9,9 @@
  *
  * @author Seema
  */
-public class Optimizer {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        Store store[];
-        // TODO code application logic here
-    }
+public class StoreUnitType {
+    private String storeUnitTypeId;
+    private String storeId;
+    private String unitTypeID;
     
 }
