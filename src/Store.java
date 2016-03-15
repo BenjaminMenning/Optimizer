@@ -16,7 +16,7 @@ public class Store {
     
     private String storeId;
     private int totalUnits; // 50 for food 
-    private ArrayList<unitType> storeUnitsTypeList = new ArrayList<unitType>();
+    private ArrayList<UnitType> storeUnitsTypeList = new ArrayList<UnitType>();
 
     
 }

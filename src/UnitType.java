@@ -14,7 +14,7 @@ public class UnitType {
     private String type; //food pet clothing cleaning
     private int totalUnitsOfType; // total amount of units allocated to type
 
-    public unitType(String unitTypeID, String type, int totalUnitsOfType) {
+    public UnitType(String unitTypeID, String type, int totalUnitsOfType) {
         this.unitTypeID = unitTypeID;
         this.type = type;
         this.totalUnitsOfType = totalUnitsOfType;
