@@ -11,11 +11,17 @@
  */
 public interface OptimizerADT {
     
-  public void AddProduct(Product pet);
-  public void RemoveProduct(Product pet);
-  public void AddStore(Store StoreId);
-  public void RemoveStore(Store StoreId);
-  public void optimise(Product[] product, Shelf[] shelfId);
+  public void addProduct(Product pet);
+  public void removeProduct(Product pet);
+  public void addStore(Store StoreId);
+  public void removeStore(Store StoreId);
+  public void loadStore(Store storeID);
+  public void connectToDatabase();
+  public void loadDatabaseInfo();
+  public void optimizeShelves(Product[] product, Shelf[] shelfId);
+  public void displayReport();
+  public void generateReport();
+  
   
     
 }

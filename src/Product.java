@@ -13,7 +13,7 @@ public class Product {
     private double height;
     private double width;
     private double length;
-    private String productId;
+    private String productID;
     private String productType;
     private String productName;
 //    private ProductImage gui;
@@ -21,11 +21,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(double height, double width, double length, String productId, String productType) {
+    public Product(double height, double width, double length, String productID, String productType) {
         this.height = height;
         this.width = width;
         this.length = length;
-        this.productId = productId;
+        this.productID = productID;
         this.productType = productType;
     }
 
@@ -41,12 +41,17 @@ public class Product {
         this.length = length;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+    
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
     }
 
     public double getHeight() {
@@ -61,18 +66,23 @@ public class Product {
         return length;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getProductID() {
+        return productID;
     }
 
     public String getProductType() {
         return productType;
     }
+    
+    public String getProductName()
+    {
+        return productName;
+    }
 
     @Override
     public String toString() {
         return "Product{" + "height=" + height + ", width=" + width 
-                + ", length=" + length + ", productId=" + productId 
+                + ", length=" + length + ", productID=" + productID 
                 + ", productType=" + productType + '}';
     }
     

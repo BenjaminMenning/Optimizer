@@ -14,9 +14,59 @@ import java.util.ArrayList;
  */
 public class Store {
     
-    private String storeId;
+    private String storeID;
     private int totalUnits; // 50 for food 
     private ArrayList<UnitType> storeUnitsTypeList = new ArrayList<UnitType>();
-
+    private ArrayList<Product> productList = new ArrayList<Product>();
+    private ArrayList<Unit> unitList = new ArrayList<Unit>();
     
+    public void setStoreID(Store storeID)
+    {
+        
+    }
+    
+    public String getStoreID()
+    {
+        
+    }
+    
+    public void setTotalUnits(int total)
+    {
+        
+    }
+    
+    public int getTotalUnits()
+    {
+        
+    }
+    
+    public void setStoreUnitsType(ArrayList<UnitType> typeList)
+    {
+        
+    }
+    
+    public ArrayList<UnitType> getStoreUnitsType()
+    {
+        
+    }
+
+    public void addProduct(Product product)
+    {
+        
+    }
+
+    public Product removeProduct(String productID)
+    {
+        
+    }
+    
+    public void addUnit(Unit unit)
+    {
+        
+    }
+
+    public void removeUnit(String unitID)
+    {
+        
+    }
 }
