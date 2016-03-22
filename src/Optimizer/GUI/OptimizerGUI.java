@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package Optimizer.GUI;
 
 /**
  *
- * @author Seema
+ * @author Ben
  */
-public class StoreUnitType {
-    private String storeUnitTypeId;
-    private String storeId;
-    private String unitTypeID;
+public class OptimizerGUI 
+{
     
 }

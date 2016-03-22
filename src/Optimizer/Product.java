@@ -1,3 +1,5 @@
+package Optimizer;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,21 +14,27 @@
 public class Product {
     private double height;
     private double width;
-    private double length;
+    private double depth;
     private String productID;
+    private String productNumber;
     private String productType;
     private String productName;
 //    private ProductImage gui;
 
     public Product() {
+        
     }
 
-    public Product(double height, double width, double length, String productID, String productType) {
+    public Product(String productID, String productNumber, String productName, 
+            String productType, double height, double width, double depth) 
+    {
+        this.productID = productID;
+        this.productNumber = productNumber;
+        this.productName = productName;
+        this.productType = productType;
         this.height = height;
         this.width = width;
-        this.length = length;
-        this.productID = productID;
-        this.productType = productType;
+        this.depth = depth;
     }
 
     public void setHeight(double height) {
@@ -37,12 +45,17 @@ public class Product {
         this.width = width;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public void setLength(double depth) {
+        this.depth = depth;
     }
 
     public void setProductID(String productID) {
         this.productID = productID;
+    }
+    
+    public void setProductNumber(String productNumber)
+    {
+        this.productNumber = productNumber;
     }
 
     public void setProductType(String productType) {
@@ -63,11 +76,16 @@ public class Product {
     }
 
     public double getLength() {
-        return length;
+        return depth;
     }
 
     public String getProductID() {
         return productID;
+    }
+    
+    public String getProductNumber()
+    {
+        return productNumber;
     }
 
     public String getProductType() {
@@ -82,7 +100,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" + "height=" + height + ", width=" + width 
-                + ", length=" + length + ", productID=" + productID 
+                + ", depth=" + depth + ", productID=" + productID 
                 + ", productType=" + productType + '}';
     }
     
