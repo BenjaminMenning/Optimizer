@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +31,45 @@ public class Optimizer {
     
     // Connection variable for connecting to the database
     private Connection connection = null;
+    
+    public static ArrayList<Product> productList = new ArrayList<>();
+    
+    //Height sorting clone of "productList"
+    public static ArrayList<Product> cloneList = new ArrayList(productList);
+
+    public static void heightSorter() {
+        
+        //ArrayList<Product> cloneList = new ArrayList(productList);
+        
+        
+        int smallInt = 0;
+        int j = 0;
+        int smallIntIndex = 0;
+        
+        for(int i=1; i < cloneList.size()-1; i++) {            
+            smallInt = (int) cloneList.get(i-1).getHeight();
+            smallIntIndex = (i-1);
+            
+            for(j=i; j < cloneList.size(); j++){
+                if(cloneList.get(j).getHeight() < smallInt){
+                    smallInt = (int) cloneList.get(j).getHeight();
+                    smallIntIndex = j;
+                }//end if                
+            }//end for
+                   
+            swap(i-1, smallIntIndex);
+            
+        }//end for
+        
+        
+    }//end heightSorter
+
+    private  void swap(int sourceIndex, int destIndex) {
+        int temp = cloneList.get(destIndex);
+        cloneList.set(destIndex, cloneList.get(sourceIndex));
+        cloneList.set(sourceIndex, temp); 
+    }
+
     
     public void connectToDatabase()
     {
