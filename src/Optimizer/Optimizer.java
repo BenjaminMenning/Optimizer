@@ -113,7 +113,7 @@ public class Optimizer {
         String productTypeStr = "'" + productType + "'";
         String query = "INSERT INTO Product(productID, productNumber, name, "
                 + "typeID, height, width, depth)"
-                + "\nVALUES (null,   " + productNumberStr + ", " +
+                + "\nVALUES (null, " + productNumberStr + ", " +
                 productNameStr + ", " +
                 productTypeStr + ", " +
                 height + ", " +
@@ -157,14 +157,73 @@ public class Optimizer {
         }    
     }
     
+    public void addStore(String storeNumber, String storeName, 
+            String totalUnits, String petUnits, String foodUnits, String 
+                    clothingUnits, String cleaningUnits) 
+            throws SQLException
+    {
+        Statement stmt = null;
+        String storeNumberStr = "'" + storeNumber + "'";
+        String storeNameStr = "'" + storeName + "'";
+        String query = "INSERT INTO Store(storeID, storeNumber, name, "
+                + "totalUnits, totalPetUnits, totalFoodUnits, "
+                + "totalClothingUnits, totalCleaningUnits)"
+                + "\nVALUES (null, " + storeNumberStr + ", " +
+                storeNameStr + ", " +
+                totalUnits + ", " +
+                petUnits + ", " +
+                foodUnits + ", " +
+                clothingUnits + ", " +
+                cleaningUnits + ")";
+        try 
+        {
+            System.out.println(query);
+            stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        }
+        catch (SQLException e ) 
+        {
+            throw e;
+        } 
+        finally 
+        {
+            if (stmt != null) { stmt.close(); }
+        }    
+    }
+    
+    public void removeStore(String storeNumber) throws SQLException
+    {
+        Statement stmt = null;
+        String storeNumberStr = "'" + storeNumber + "'";
+        String query = "DELETE FROM Store"
+                + "\nWHERE StoreNumber = " + storeNumberStr;
+        try 
+        {
+            System.out.println(query);
+            stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+        }
+        catch (SQLException e ) 
+        {
+            throw e;
+        } 
+        finally 
+        {
+            if (stmt != null) { stmt.close(); }
+        }    
+    }
+    
+    
     public static void main(String[] args) throws SQLException {
         Optimizer optimizer = new Optimizer();
         Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
             10);
         optimizer.connectToDatabase();
 //        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
-        optimizer.removeProduct("4J329KF3");
+//        optimizer.removeProduct("4J329KF3");
 
+        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
+//        optimizer.removeStore("3J40IO");
         // TODO code application logic here
     }    
 }
