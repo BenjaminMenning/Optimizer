@@ -37,38 +37,38 @@ public class Optimizer {
     //Height sorting clone of "productList"
     public static ArrayList<Product> cloneList = new ArrayList(productList);
 
-    public static void heightSorter() {
-        
-        //ArrayList<Product> cloneList = new ArrayList(productList);
-        
-        
-        int smallInt = 0;
-        int j = 0;
-        int smallIntIndex = 0;
-        
-        for(int i=1; i < cloneList.size()-1; i++) {            
-            smallInt = (int) cloneList.get(i-1).getHeight();
-            smallIntIndex = (i-1);
-            
-            for(j=i; j < cloneList.size(); j++){
-                if(cloneList.get(j).getHeight() < smallInt){
-                    smallInt = (int) cloneList.get(j).getHeight();
-                    smallIntIndex = j;
-                }//end if                
-            }//end for
-                   
-            swap(i-1, smallIntIndex);
-            
-        }//end for
-        
-        
-    }//end heightSorter
-
-    private  void swap(int sourceIndex, int destIndex) {
-        int temp = cloneList.get(destIndex);
-        cloneList.set(destIndex, cloneList.get(sourceIndex));
-        cloneList.set(sourceIndex, temp); 
-    }
+//    public static void heightSorter() {
+//        
+//        //ArrayList<Product> cloneList = new ArrayList(productList);
+//        
+//        
+//        int smallInt = 0;
+//        int j = 0;
+//        int smallIntIndex = 0;
+//        
+//        for(int i=1; i < cloneList.size()-1; i++) {            
+//            smallInt = (int) cloneList.get(i-1).getHeight();
+//            smallIntIndex = (i-1);
+//            
+//            for(j=i; j < cloneList.size(); j++){
+//                if(cloneList.get(j).getHeight() < smallInt){
+//                    smallInt = (int) cloneList.get(j).getHeight();
+//                    smallIntIndex = j;
+//                }//end if                
+//            }//end for
+//                   
+//            swap(i-1, smallIntIndex);
+//            
+//        }//end for
+//        
+//        
+//    }//end heightSorter
+//
+//    private  void swap(int sourceIndex, int destIndex) {
+//        int temp = cloneList.get(destIndex);
+//        cloneList.set(destIndex, cloneList.get(sourceIndex));
+//        cloneList.set(sourceIndex, temp); 
+//    }
 
     
     public void connectToDatabase()
@@ -213,6 +213,29 @@ public class Optimizer {
         }    
     }
     
+    public String determineTypeID(String type) throws SQLException
+    {
+        connectToDatabase();
+        Statement stmt = null;
+        String typeID = "";
+        String typeStr = "'" + type + "'";
+        String query = "SELECT typeID \nFROM Type" 
+                + "\nWHERE type = " + typeStr;
+        System.out.println(query);
+        stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);        
+        ResultSet rs = stmt.executeQuery(query);
+        if (!rs.next())
+        {
+            // do nothing
+        }
+        else 
+        {
+//          rs.next();
+          typeID = rs.getString("typeID");
+        }    
+        return typeID;
+    }
+
     
     public static void main(String[] args) throws SQLException {
         Optimizer optimizer = new Optimizer();
@@ -222,7 +245,7 @@ public class Optimizer {
 //        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
 //        optimizer.removeProduct("4J329KF3");
 
-        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
+//        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
 //        optimizer.removeStore("3J40IO");
         // TODO code application logic here
     }    
