@@ -13,34 +13,31 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 /** 
- * Author:          Benjamin Menning, Dan Johnson, Holly Schreader
+ * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * 
- * Date:            05/05/2015 
+ * Date:            04/26/2016 
  *                
- * Course:          CS 485 - 01, Spring 2015
+ * Course:          CS 410 - 01, Spring 2016
  * 
- * Assignment:      Database Project
+ * Assignment:      Software Engineering Project
  * 
- * Description:     This program is a medical database program that utilizes a
- *                  MySQL relational database management system to allow users
- *                  to input and view information about products and visits.
- *                  It allows users to input information on a wide variety of 
- *                  things, including product conditions and assistive devices,
- *                  visit diagnoses and studies, as well as information about
- *                  healthcare providers or systems used. It also allows a user
- *                  to search and lookup information about products based on a
- *                  wide variety of criteria like name, diagnoses, date of birth
- *                  and more. It also allows users to see more detailed 
- *                  information about products and their visits.
+ * Description:     This program is a shelving space management program that 
+ *                  utilizes an SQLite relational database management system to 
+ *                  allow users to input and view information about stores and 
+ *                  products, and then uses that information to optimize the 
+ *                  shelving space utilized for each product within a store.
+ *                  It allows users to add and remove products or stores and 
+ *                  also allows a user to optimize the product layout for a 
+ *                  store and display a report containing the layout 
+ *                  information. 
  */
 
 /** 
- * This class constructs the overall user interface for the medical clinic 
- * database and implements a wide array of different components into a single
- * frame.
+ * This class contains a main method that allows a user to run the Optimizer 
+ * shelving space management program.
  * 
- * @author Benjamin Menning, Dan Johnson, Holly Schreader
- * @version 05/05/2015 
+ * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * @version 04/26/2016 
  */
 public class OptimizerGUI 
 {
