@@ -47,7 +47,7 @@ public class OptimizerGUI
                                         
     // String variable for JFrame title
     private String inputTitleStr = "Optimizer Shelving Space Manager";
-    
+        
     // Product JPanel variables
     private JPanel productInputComboP;
     private JPanel productInputPanel;
@@ -114,16 +114,16 @@ public class OptimizerGUI
                                 
         // Initializes product input GUI components
         productInputGUI = new ProductInputGUI(optimizer);
-//        productRemovalGUI = new ProductRemovalGUI(optimizer);
+        productRemovalGUI = new ProductRemovalGUI(optimizer);
         
         // Initializes product input panels
         productInputPanel = productInputGUI.createProductInputPanel();
-//        productRemovalPanel = productRemovalGUI.createInputPanel();
+        productRemovalPanel = productRemovalGUI.createInputPanel();
         
         // Creates and adds panels for product inputs
         productInputPanels = new JPanel(new CardLayout());
         productInputPanels.add(productInputPanel, productInputStr);
-//        productInputPanels.add(productRemovalPanel, productRemovalStr);
+        productInputPanels.add(productRemovalPanel, productRemovalStr);
                
         // Adds product input panels to tab and sets layout
         productInputTabP.add(productInputPanels);
@@ -132,8 +132,8 @@ public class OptimizerGUI
         // Create JTabbedPane and add tab panels to pane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Product Input", productInputTabP);
-//        tabbedPane.addTab("Visit Input", productInputTabP);
-//        tabbedPane.addTab("Miscellaneous Input", productInputTabP);
+        tabbedPane.addTab("Visit Input", productInputTabP);
+        tabbedPane.addTab("Miscellaneous Input", productInputTabP);
         
         // Initialize JFrame properties
         optimizerGUIFrame.setTitle(inputTitleStr);

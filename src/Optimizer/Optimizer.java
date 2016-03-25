@@ -173,6 +173,33 @@ public class Optimizer {
         }    
     }
     
+    public ArrayList<String> getProductNumberList() throws SQLException
+    {
+        ArrayList<String> productNumberList = new ArrayList<String>();
+        productNumberList.add("");
+        Statement stmt = null;
+        String query = "SELECT *\nFROM Product";
+        try 
+        {
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) 
+            {
+                String productNumber = rs.getString("productNumber");
+                productNumberList.add(productNumber);
+            }
+        } 
+        catch (SQLException e ) 
+        {
+            throw e;
+        } 
+        finally 
+        {
+            if (stmt != null) { stmt.close(); }
+        }    
+        return productNumberList;
+    }
+    
     public void addStore(String storeNumber, String storeName, 
             String totalUnits, String petUnits, String foodUnits, String 
                     clothingUnits, String cleaningUnits) 
@@ -251,13 +278,36 @@ public class Optimizer {
         }    
         return typeID;
     }
-
+    
+    public String determineProductID(String productNumber) throws SQLException
+    {
+        connectToDatabase();
+        Statement stmt = null;
+        String productID = "";
+        String productNumberStr = "'" + productNumber + "'";
+        String query = "SELECT productID \nFROM Product" 
+                + "\nWHERE productNumber = " + productNumberStr;
+        System.out.println(query);
+        stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);        
+        ResultSet rs = stmt.executeQuery(query);
+        if (!rs.next())
+        {
+            // do nothing
+        }
+        else 
+        {
+//          rs.next();
+          productID = rs.getString("productID");
+        }    
+        return productID;
+    }
     
     public static void main(String[] args) throws SQLException {
         Optimizer optimizer = new Optimizer();
         Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
             10);
         optimizer.connectToDatabase();
+        System.out.println(optimizer.getProductNumberList());
 //        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
 //        optimizer.removeProduct("4J329KF3");
 
