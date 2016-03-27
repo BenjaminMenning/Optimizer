@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Collections;
 
 /** 
  * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
@@ -51,7 +52,9 @@ public class Optimizer {
     public static ArrayList<Product> productList = new ArrayList<>();
     
     //Height sorting clone of "productList"
-    public static ArrayList<Product> cloneList = new ArrayList(productList);
+    //public static ArrayList<Product> cloneList = new ArrayList(productList);
+    
+    
 
 //    public static void heightSorter() {
 //        
@@ -86,6 +89,65 @@ public class Optimizer {
 //        cloneList.set(sourceIndex, temp); 
 //    }
 
+
+    
+    public Product heightSorter() {
+        
+        int temp = 0;
+        Product tempProductHeight = null;
+        ArrayList<Product> tempHeight = new ArrayList<Product>(productList);
+        Collections.sort(tempHeight, new compareHeight());
+        tempProductHeight = tempHeight.get(0);
+        temp = productList.indexOf(tempProductHeight);
+        tempProductHeight = productList.remove(temp);
+                
+        return tempProductHeight;
+    }
+    
+        public int compareHeight(Product x, Product y){
+        
+        double prodHeightX = x.getHeight();
+        double prodHieghtY = y.getHeight();
+        if (prodHeightX > prodHieghtY) {
+            return 1;
+        }
+        else if (prodHeightX == prodHieghtY){
+            return 0;
+        }
+        else {
+        return -1;
+        }
+    }
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
+        public Product widthSorter() {
+        
+        int temp = 0;
+        Product tempProductWidth = null;
+        ArrayList<Product> tempWidth = new ArrayList<Product>(productList);
+        Collections.sort(tempWidth, new compareWidth());
+        tempProductWidth = tempWidth.get(0);
+        temp = productList.indexOf(tempProductWidth);
+        tempProductWidth = productList.remove(temp);
+                
+        return tempProductWidth;
+    }
+    
+        public int compareWidth(Product x, Product y){
+        
+        double prodWidthX = x.getWidth();
+        double prodWidthY = y.getWidth();
+        if (prodWidthX > prodWidthY) {
+            return 1;
+        }
+        else if (prodWidthX == prodWidthY){
+            return 0;
+        }
+        else {
+        return -1;
+        }
+    }
     
     public void connectToDatabase()
     {
