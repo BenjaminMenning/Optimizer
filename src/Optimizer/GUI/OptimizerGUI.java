@@ -44,6 +44,8 @@ public class OptimizerGUI
     // String variables for Product JComboBox        
     private String productInputStr = "Add a Product";
     private String productRemovalStr = "Remove a Product";
+    private String storeInputStr = "Add a Store";
+    private String storeRemovalStr = "Remove a Store";
                                         
     // String variable for JFrame title
     private String inputTitleStr = "Optimizer Shelving Space Manager";
@@ -54,6 +56,12 @@ public class OptimizerGUI
     private JPanel productRemovalPanel;
     private JPanel productInputPanels;
     private JPanel productInputTabP;
+
+    private JPanel storeInputComboP;
+    private JPanel storeInputPanel;
+    private JPanel storeRemovalPanel;
+    private JPanel storeInputPanels;
+    private JPanel storeInputTabP;
     
     // Frame that contains all components
     private JFrame optimizerGUIFrame;
@@ -64,6 +72,8 @@ public class OptimizerGUI
     // Product input GUI objects
     private ProductInputGUI productInputGUI;
     private ProductRemovalGUI productRemovalGUI;
+    private StoreInputGUI storeInputGUI;
+    private StoreRemovalGUI storeRemovalGUI;
             
     // JButton variables
     private JButton searchProductB;
@@ -75,6 +85,9 @@ public class OptimizerGUI
     private JComboBox productInputCombo = new JComboBox();
     private String productComboBoxItems[] = {productInputStr, 
         productRemovalStr};
+    private JComboBox storeInputCombo = new JComboBox();
+    private String storeComboBoxItems[] = {storeInputStr, 
+        storeRemovalStr};
     
     /**
      * This constructor contains a parameter to assign the medical clinic 
@@ -128,12 +141,48 @@ public class OptimizerGUI
         // Adds product input panels to tab and sets layout
         productInputTabP.add(productInputPanels);
         productInputTabP.add(productInputComboP,BorderLayout.PAGE_END);
+        
+        // Creates input tab panels and sets layout
+        storeInputTabP = new JPanel();
+        storeInputTabP.setLayout(new BorderLayout());   
+        
+        // Creates store JComboBox, initializes it, and adds it to panel
+        storeInputCombo = new JComboBox(storeComboBoxItems);
+        storeInputCombo.setEditable(false);
+        storeInputCombo.addActionListener(new ActionListener() 
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                JComboBox jcb = (JComboBox) e.getSource();
+                CardLayout cl = (CardLayout) storeInputPanels.getLayout();
+                cl.show(storeInputPanels, jcb.getSelectedItem().toString());
+            }
+        });
+        storeInputComboP = new JPanel();
+        storeInputComboP.add(storeInputCombo);   
+                                
+        // Initializes store input GUI components
+        storeInputGUI = new StoreInputGUI(optimizer);
+        storeRemovalGUI = new StoreRemovalGUI(optimizer);
+        
+        // Initializes store input panels
+        storeInputPanel = storeInputGUI.createStoreInputPanel();
+        storeRemovalPanel = storeRemovalGUI.createInputPanel();
+        
+        // Creates and adds panels for store inputs
+        storeInputPanels = new JPanel(new CardLayout());
+        storeInputPanels.add(storeInputPanel, storeInputStr);
+        storeInputPanels.add(storeRemovalPanel, storeRemovalStr);
+               
+        // Adds store input panels to tab and sets layout
+        storeInputTabP.add(storeInputPanels);
+        storeInputTabP.add(storeInputComboP,BorderLayout.PAGE_END);
                        
         // Create JTabbedPane and add tab panels to pane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Product Input", productInputTabP);
-        tabbedPane.addTab("Visit Input", productInputTabP);
-        tabbedPane.addTab("Miscellaneous Input", productInputTabP);
+        tabbedPane.addTab("Store Input", storeInputTabP);
         
         // Initialize JFrame properties
         optimizerGUIFrame.setTitle(inputTitleStr);

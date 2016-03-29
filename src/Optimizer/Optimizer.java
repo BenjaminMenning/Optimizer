@@ -318,6 +318,33 @@ public class Optimizer {
         }    
     }
     
+    public ArrayList<String> getStoreNumberList() throws SQLException
+    {
+        ArrayList<String> storeNumberList = new ArrayList<String>();
+        storeNumberList.add("");
+        Statement stmt = null;
+        String query = "SELECT *\nFROM Store";
+        try 
+        {
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) 
+            {
+                String storeNumber = rs.getString("storeNumber");
+                storeNumberList.add(storeNumber);
+            }
+        } 
+        catch (SQLException e ) 
+        {
+            throw e;
+        } 
+        finally 
+        {
+            if (stmt != null) { stmt.close(); }
+        }    
+        return storeNumberList;
+    }
+    
     public String determineTypeID(String type) throws SQLException
     {
         connectToDatabase();
@@ -362,6 +389,29 @@ public class Optimizer {
           productID = rs.getString("productID");
         }    
         return productID;
+    }
+    
+    public String determineStoreID(String storeNumber) throws SQLException
+    {
+        connectToDatabase();
+        Statement stmt = null;
+        String storeID = "";
+        String storeNumberStr = "'" + storeNumber + "'";
+        String query = "SELECT storeID \nFROM Store" 
+                + "\nWHERE storeNumber = " + storeNumberStr;
+        System.out.println(query);
+        stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);        
+        ResultSet rs = stmt.executeQuery(query);
+        if (!rs.next())
+        {
+            // do nothing
+        }
+        else 
+        {
+//          rs.next();
+          storeID = rs.getString("storeID");
+        }    
+        return storeID;
     }
     
     public static void main(String[] args) throws SQLException {
