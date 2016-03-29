@@ -46,11 +46,21 @@ public class Optimizer {
     private String databaseUsername = "blah";
     private String databasePassword = "blah";
     
+    
     // Connection variable for connecting to the database
     private Connection connection = null;
     
     public static ArrayList<Product> productList = new ArrayList<>();
+    public static Product sortedWidth = new Product();
+    public static Product sortedHeight = new Product();
+    //public static Product Shelf = new Product();
     
+    public static ArrayList<Product> Shelf = new ArrayList<>();
+    
+    public static ArrayList<Product> widthList = sortedWidth.heightSorter();
+    public static ArrayList<Product> heightList = sortedHeight.heightSorter();
+    
+
     //Height sorting clone of "productList"
     //public static ArrayList<Product> cloneList = new ArrayList(productList);
     
@@ -415,6 +425,13 @@ public class Optimizer {
     }
     
     public static void main(String[] args) throws SQLException {
+        
+        boolean done = false;
+        double maxWidth = 48;
+        double maxHeight = 84;
+        double totalProductWidth = 0;
+        
+        
         Optimizer optimizer = new Optimizer();
         Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
             10);
@@ -426,5 +443,28 @@ public class Optimizer {
 //        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
 //        optimizer.removeStore("3J40IO");
         // TODO code application logic here
+        
+        //Filling a Shelf based on width
+        int index = 0;
+        while (!done) {
+        if(maxWidth > totalProductWidth) {
+            //Shelf = heightList.get(index);
+            Shelf.add(index, heightList.get(index));
+            index++;
+            totalProductWidth += heightList.get(index).getWidth();
+        }//end if
+        
+        if (totalProductWidth > maxWidth) {
+            totalProductWidth -= heightList.get(index).getWidth();            
+            //Shelf; //remove last element 
+            Shelf.remove(index);
+            index--;
+            done = true;
+        }//end if
+        
+        }//end while
+        
+        
+        
     }    
 }
