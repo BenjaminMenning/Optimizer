@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Collections;
+import java.util.Comparator;
 
 /** 
  * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
@@ -106,15 +107,42 @@ public class Optimizer {
         int temp = 0;
         Product tempProductHeight = null;
         ArrayList<Product> tempHeight = new ArrayList<Product>(productList);
-        Collections.sort(tempHeight, new compareHeight());
+        Collections.sort(tempHeight, new HeightComparator());
         tempProductHeight = tempHeight.get(0);
         temp = productList.indexOf(tempProductHeight);
         tempProductHeight = productList.remove(temp);
                 
-        return tempProductHeight;
+        return tempProductHeight;    
     }
-    
-        public int compareHeight(Product x, Product y){
+        
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
+        public Product widthSorter() {
+        
+        int temp = 0;
+        Product tempProductWidth = null;
+        WidthComparator comparator = new WidthComparator();
+        ArrayList<Product> tempWidth = new ArrayList<Product>(productList);
+        Collections.sort(tempWidth, new WidthComparator());
+        tempProductWidth = tempWidth.get(0);
+        temp = productList.indexOf(tempProductWidth);
+        tempProductWidth = productList.remove(temp);
+                
+        return tempProductWidth;    
+    }
+        
+    /** 
+     * This class is a comparator that compares PCB objects. It orders the PCBs
+     * with the shortest job at the front of the queue. It is used by the SJF
+     * algorithm.
+     * 
+     * @author Benjamin Menning
+     * @version 02/14/2016
+     */
+    public class HeightComparator implements Comparator<Product>
+    {
+        @Override
+        public int compare(Product x, Product y){
         
         double prodHeightX = x.getHeight();
         double prodHieghtY = y.getHeight();
@@ -127,24 +155,23 @@ public class Optimizer {
         else {
         return -1;
         }
+        }
     }
-        
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        
-        public Product widthSorter() {
-        
-        int temp = 0;
-        Product tempProductWidth = null;
-        ArrayList<Product> tempWidth = new ArrayList<Product>(productList);
-        Collections.sort(tempWidth, new compareWidth());
-        tempProductWidth = tempWidth.get(0);
-        temp = productList.indexOf(tempProductWidth);
-        tempProductWidth = productList.remove(temp);
-                
-        return tempProductWidth;
-    }
-    
-        public int compareWidth(Product x, Product y){
+
+
+    /** 
+     * This class is a comparator that compares PCB objects. It orders the PCBs
+     * with the shortest job at the front of the queue. It is used by the SJF
+     * algorithm.
+     * 
+     * @author Benjamin Menning
+     * @version 02/14/2016
+     */
+    public class WidthComparator implements Comparator<Product>
+    {
+        @Override
+        public int compare(Product x, Product y)
+        {
         
         double prodWidthX = x.getWidth();
         double prodWidthY = y.getWidth();
@@ -156,6 +183,7 @@ public class Optimizer {
         }
         else {
         return -1;
+        }
         }
     }
     
