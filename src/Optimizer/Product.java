@@ -41,7 +41,7 @@ public class Product {
         
     }
 
-    public Product(String productID, String productNumber, String productName, 
+    public Product(String productNumber, String productName, 
             String productType, double height, double width, double depth) 
     {
         this.productID = productID;
@@ -119,9 +119,4 @@ public class Product {
                 + ", depth=" + depth + ", productID=" + productID 
                 + ", productType=" + productType + '}';
     }
-    
-    
-     
-    
-    
 }

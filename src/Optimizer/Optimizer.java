@@ -58,8 +58,8 @@ public class Optimizer {
     
     public static ArrayList<Product> Shelf = new ArrayList<>();
     
-    public static ArrayList<Product> widthList = sortedWidth.heightSorter();
-    public static ArrayList<Product> heightList = sortedHeight.heightSorter();
+//    public ArrayList<Product> widthList = heightSorter();
+//    public ArrayList<Product> heightList = widthSorter();
     
 
     //Height sorting clone of "productList"
@@ -102,7 +102,7 @@ public class Optimizer {
 
 
     
-    public Product heightSorter() {
+    public ArrayList<Product> heightSorter(ArrayList<Product> prodList) {
         
         int temp = 0;
         Product tempProductHeight = null;
@@ -112,12 +112,12 @@ public class Optimizer {
         temp = productList.indexOf(tempProductHeight);
         tempProductHeight = productList.remove(temp);
                 
-        return tempProductHeight;    
+        return tempHeight;    
     }
         
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
-        public Product widthSorter() {
+        public ArrayList<Product> widthSorter(ArrayList<Product> prodList) {
         
         int temp = 0;
         Product tempProductWidth = null;
@@ -128,7 +128,7 @@ public class Optimizer {
         temp = productList.indexOf(tempProductWidth);
         tempProductWidth = productList.remove(temp);
                 
-        return tempProductWidth;    
+        return tempWidth;    
     }
         
     /** 
@@ -452,6 +452,47 @@ public class Optimizer {
         return storeID;
     }
     
+    public ArrayList<Product> getProductList() throws SQLException
+    {
+        ArrayList<Product> productList = new ArrayList<Product>();
+//        productList.add("");
+        Statement stmt = null;
+        String query = "SELECT *\nFROM Product";
+        try 
+        {
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) 
+            {
+                 
+                Product product = new Product();
+                product.setProductNumber(rs.getString("productNumber"));
+                productList.add(product);
+            }
+            
+//List<Entity> entities = new ArrayList<Entity>();
+//// ...
+//while (resultSet.next()) {
+//    Entity entity = new Entity();
+//    entity.setId(resultSet.getLong("id"));
+//    entity.setName(resultSet.getString("name"));
+//    entity.setValue(resultSet.getInt("value"));
+//    // ...
+//    entities.add(entity);
+//}        
+            
+        } 
+        catch (SQLException e ) 
+        {
+            throw e;
+        } 
+        finally 
+        {
+            if (stmt != null) { stmt.close(); }
+        }    
+        return productList;
+    }
+    
     public static void main(String[] args) throws SQLException {
         
         boolean done = false;
@@ -459,40 +500,43 @@ public class Optimizer {
         double maxHeight = 84;
         double totalProductWidth = 0;
         
-        
-        Optimizer optimizer = new Optimizer();
-        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
-            10);
-        optimizer.connectToDatabase();
-        System.out.println(optimizer.getProductNumberList());
-//        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
-//        optimizer.removeProduct("4J329KF3");
-
-//        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
-//        optimizer.removeStore("3J40IO");
-        // TODO code application logic here
-        
-        //Filling a Shelf based on width
-        int index = 0;
-        while (!done) {
-        if(maxWidth > totalProductWidth) {
-            //Shelf = heightList.get(index);
-            Shelf.add(index, heightList.get(index));
-            index++;
-            totalProductWidth += heightList.get(index).getWidth();
-        }//end if
-        
-        if (totalProductWidth > maxWidth) {
-            totalProductWidth -= heightList.get(index).getWidth();            
-            //Shelf; //remove last element 
-            Shelf.remove(index);
-            index--;
-            done = true;
-        }//end if
-        
-        }//end while
+        ArrayList<Product> productList = new ArrayList<Product>();
         
         
         
+//        Optimizer optimizer = new Optimizer();
+//        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
+//            10);
+//        optimizer.connectToDatabase();
+//        System.out.println(optimizer.getProductNumberList());
+////        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
+////        optimizer.removeProduct("4J329KF3");
+//
+////        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
+////        optimizer.removeStore("3J40IO");
+//        // TODO code application logic here
+//        
+//        //Filling a Shelf based on width
+//        int index = 0;
+//        while (!done) {
+//        if(maxWidth > totalProductWidth) {
+//            //Shelf = heightList.get(index);
+//            Shelf.add(index, heightList.get(index));
+//            index++;
+//            totalProductWidth += heightList.get(index).getWidth();
+//        }//end if
+//        
+//        if (totalProductWidth > maxWidth) {
+//            totalProductWidth -= heightList.get(index).getWidth();            
+//            //Shelf; //remove last element 
+//            Shelf.remove(index);
+//            index--;
+//            done = true;
+//        }//end if
+//        
+//        }//end while
+//        
+//        
+//        
     }    
 }
