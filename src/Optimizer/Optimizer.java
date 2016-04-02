@@ -466,7 +466,14 @@ public class Optimizer {
             {
                  
                 Product product = new Product();
+                int typeID = rs.getInt("typeID");
+                
                 product.setProductNumber(rs.getString("productNumber"));
+                product.setProductNumber(rs.getString("name"));
+                
+                product.setHeight(rs.getDouble("height"));
+                product.setWidth(rs.getDouble("width"));
+                product.setDepth(rs.getDouble("depth"));
                 productList.add(product);
             }
             
@@ -499,9 +506,12 @@ public class Optimizer {
         double maxWidth = 48;
         double maxHeight = 84;
         double totalProductWidth = 0;
+        Optimizer optimizer = new Optimizer();
         
         ArrayList<Product> productList = new ArrayList<Product>();
-        
+        ArrayList<Product> widthList = optimizer.widthSorter(productList);
+        ArrayList<Product> heightList = optimizer.heightSorter(productList);
+
         
         
 //        Optimizer optimizer = new Optimizer();

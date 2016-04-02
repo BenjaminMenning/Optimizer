@@ -61,7 +61,7 @@ public class Product {
         this.width = width;
     }
 
-    public void setLength(double depth) {
+    public void setDepth(double depth) {
         this.depth = depth;
     }
 
