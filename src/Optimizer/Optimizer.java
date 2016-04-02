@@ -104,13 +104,13 @@ public class Optimizer {
     
     public ArrayList<Product> heightSorter(ArrayList<Product> prodList) {
         
-        int temp = 0;
-        Product tempProductHeight = null;
-        ArrayList<Product> tempHeight = new ArrayList<Product>(productList);
+//        int temp = 0;
+//        Product tempProductHeight = null;
+        ArrayList<Product> tempHeight = new ArrayList<Product>(prodList);
         Collections.sort(tempHeight, new HeightComparator());
-        tempProductHeight = tempHeight.get(0);
-        temp = productList.indexOf(tempProductHeight);
-        tempProductHeight = productList.remove(temp);
+//        tempProductHeight = tempHeight.get(0);
+//        temp = productList.indexOf(tempProductHeight);
+//        tempProductHeight = productList.remove(temp);
                 
         return tempHeight;    
     }
@@ -119,14 +119,13 @@ public class Optimizer {
         
         public ArrayList<Product> widthSorter(ArrayList<Product> prodList) {
         
-        int temp = 0;
-        Product tempProductWidth = null;
-        WidthComparator comparator = new WidthComparator();
-        ArrayList<Product> tempWidth = new ArrayList<Product>(productList);
+//        int temp = 0;
+//        Product tempProductWidth = null;
+        ArrayList<Product> tempWidth = new ArrayList<Product>(prodList);
         Collections.sort(tempWidth, new WidthComparator());
-        tempProductWidth = tempWidth.get(0);
-        temp = productList.indexOf(tempProductWidth);
-        tempProductWidth = productList.remove(temp);
+//        tempProductWidth = tempWidth.get(0);
+//        temp = productList.indexOf(tempProductWidth);
+//        tempProductWidth = productList.remove(temp);
                 
         return tempWidth;    
     }
@@ -405,6 +404,30 @@ public class Optimizer {
         }    
         return typeID;
     }
+
+    public String determineType(int typeID) throws SQLException
+    {
+        connectToDatabase();
+        Statement stmt = null;
+        String type = "";
+        String typeIDStr = "'" + typeID + "'";
+        String query = "SELECT type \nFROM Type" 
+                + "\nWHERE type = " + typeIDStr;
+        System.out.println(query);
+        stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);        
+        ResultSet rs = stmt.executeQuery(query);
+        if (!rs.next())
+        {
+            // do nothing
+        }
+        else 
+        {
+//          rs.next();
+          type = rs.getString("type");
+        }    
+        return type;
+    }
+
     
     public String determineProductID(String productNumber) throws SQLException
     {
@@ -467,13 +490,15 @@ public class Optimizer {
                  
                 Product product = new Product();
                 int typeID = rs.getInt("typeID");
+                String type = determineType(typeID);
                 
                 product.setProductNumber(rs.getString("productNumber"));
-                product.setProductNumber(rs.getString("name"));
-                
+                product.setProductName(rs.getString("name"));
+                product.setProductType(type);
                 product.setHeight(rs.getDouble("height"));
                 product.setWidth(rs.getDouble("width"));
                 product.setDepth(rs.getDouble("depth"));
+                product.toString();
                 productList.add(product);
             }
             
@@ -508,9 +533,14 @@ public class Optimizer {
         double totalProductWidth = 0;
         Optimizer optimizer = new Optimizer();
         
+        optimizer.connectToDatabase();
         ArrayList<Product> productList = new ArrayList<Product>();
-        ArrayList<Product> widthList = optimizer.widthSorter(productList);
-        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
+        productList = optimizer.getProductList();
+        System.out.println(productList.toString());
+        ArrayList<Product> widthList = optimizer.heightSorter(productList);
+        System.out.println(widthList.toString());
+        
+//        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
         
 //        Optimizer optimizer = new Optimizer();
 //        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 

@@ -115,8 +115,12 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "height=" + height + ", width=" + width 
-                + ", depth=" + depth + ", productID=" + productID 
-                + ", productType=" + productType + '}';
+        return "Product Information" 
+                + "\nProduct Number: " + productNumber 
+                + "\nProduct Name: " + productName 
+                + "\nProduct Type: " + productType 
+                + "\nProduct Height: " + height 
+                + "\nProduct Width: " + width 
+                + "\nProduct Depth: " + depth + "\n\n";
     }
 }
