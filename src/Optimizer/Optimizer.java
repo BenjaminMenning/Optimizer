@@ -510,9 +510,7 @@ public class Optimizer {
         
         ArrayList<Product> productList = new ArrayList<Product>();
         ArrayList<Product> widthList = optimizer.widthSorter(productList);
-        ArrayList<Product> heightList = optimizer.heightSorter(productList);
-
-        
+        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
         
 //        Optimizer optimizer = new Optimizer();
 //        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
