@@ -414,7 +414,7 @@ public class Optimizer {
         String type = "";
         String typeIDStr = "'" + typeID + "'";
         String query = "SELECT type \nFROM Type" 
-                + "\nWHERE type = " + typeIDStr;
+                + "\nWHERE typeID = " + typeIDStr;
         System.out.println(query);
         stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);        
         ResultSet rs = stmt.executeQuery(query);
@@ -545,7 +545,7 @@ public class Optimizer {
         optimizer.connectToDatabase();
         ArrayList<Product> productList = new ArrayList<Product>();
         productList = optimizer.getProductList();
-        //System.out.println(productList.toString());
+//        System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
         //System.out.println(widthList.toString());
         
