@@ -115,12 +115,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product Information" 
-                + "\nProduct Number: " + productNumber 
-                + "\nProduct Name: " + productName 
-                + "\nProduct Type: " + productType 
-                + "\nProduct Height: " + height 
-                + "\nProduct Width: " + width 
-                + "\nProduct Depth: " + depth + "\n\n";
+        return  String.format("\t%-16s%-16s%-16s%-16s%-16s%-16s\n", productNumber, productName, productType, height, width, depth);
     }
 }

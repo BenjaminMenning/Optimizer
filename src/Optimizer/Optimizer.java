@@ -51,13 +51,15 @@ public class Optimizer {
     // Connection variable for connecting to the database
     private Connection connection = null;
     
+    public static ArrayList<ArrayList<Product>> shelf = new ArrayList<ArrayList<Product>>();
+    
     public static ArrayList<Product> productList = new ArrayList<>();
     public static Product sortedWidth = new Product();
     public static Product sortedHeight = new Product();
     //public static Product Shelf = new Product();
     
     public static ArrayList<Product> Shelf = new ArrayList<>();
-    
+        
 //    public ArrayList<Product> widthList = heightSorter();
 //    public ArrayList<Product> heightList = widthSorter();
     
@@ -531,15 +533,104 @@ public class Optimizer {
         double maxWidth = 48;
         double maxHeight = 84;
         double totalProductWidth = 0;
+                
         Optimizer optimizer = new Optimizer();
+        
+        shelf.add(new ArrayList<Product>());
+        shelf.add(new ArrayList<Product>());
+        shelf.add(new ArrayList<Product>());
+        shelf.add(new ArrayList<Product>());
+        shelf.add(new ArrayList<Product>());
         
         optimizer.connectToDatabase();
         ArrayList<Product> productList = new ArrayList<Product>();
         productList = optimizer.getProductList();
-        System.out.println(productList.toString());
+        //System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
-        System.out.println(widthList.toString());
+        //System.out.println(widthList.toString());
         
+        //shelf Hight----------------------------------------------------------
+        double largest = 0;       
+        for(int i =0; i < widthList.size(); i++){
+            if(largest < widthList.get(i).getHeight()){
+                largest = widthList.get(i).getHeight();                        
+            }//end if                
+        }//end for
+        
+        System.out.println("Tallset prod: " + largest);
+        
+        //Finding shelf Hight
+        double nextShelf;
+        nextShelf = largest + 2;        
+        System.out.println("Next Shelf Height is: " + nextShelf);
+        
+        
+        
+        
+        //Filling a shelf------------------------------------------------------       
+       while (totalProductWidth < maxWidth){
+           
+            shelf.get(0).add(widthList.get(0));            
+            totalProductWidth += widthList.get(0).getWidth();
+            if(totalProductWidth < maxWidth){            
+                widthList.remove(0);
+            }//end if
+            
+            System.out.println("\nTotal Length is: " + totalProductWidth);
+       }//end while
+       
+       System.out.println("\nEnding Total for Shelf 1 is: " + totalProductWidth);
+       
+       
+       
+       //Shelf PrintOUT--------------------------------------------------------
+       int indexA = 1;
+       int indexB = 1;
+       int indexC = 1;
+       int indexD = 1;       
+       
+       System.out.println("Shelf 1");
+       System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\tProduct Height\tProduct Width\tProduct Depth");
+       
+       for(int i =0; i < shelf.get(0).size(); i++){
+            System.out.print("A" + indexA + ".\t");
+            System.out.print(shelf.get(0).get(i));
+            indexA++;
+       }//end A forLoop
+       
+       
+       if(!shelf.get(1).isEmpty()){
+           System.out.println("\nShelf 2");
+           for(int i =0; i < shelf.get(1).size(); i++){
+            System.out.print("B" + indexB + ".\t");
+            System.out.print(shelf.get(1).get(i));
+            indexB++;
+
+            }//end B forLoop
+        }//end B if   
+       
+        if(!shelf.get(2).isEmpty()){
+            System.out.println("\nShelf 3");
+           for(int i =0; i < shelf.get(2).size(); i++){
+            System.out.print("C" + indexC + ".\t");
+            System.out.print(shelf.get(1).get(i));
+            indexC++;
+
+            }//end C forLoop
+       }//end C if 
+       
+        if(!shelf.get(3).isEmpty()){
+           System.out.println("Shelf 4");
+           for(int i =0; i < shelf.get(3).size(); i++){
+            System.out.print("D" + indexD + ".\t");
+            System.out.print(shelf.get(3).get(i));
+            indexD++;
+
+            }//end B forLoop
+       }//end B if 
+       
+       
+       
 //        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
         
 //        Optimizer optimizer = new Optimizer();
