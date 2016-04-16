@@ -62,9 +62,9 @@ public class ProductInputGUI
     private String productNumberStr = "Product Number(########):";
     private String nameStr = "Name:";
     private String typeStr = "Type:";
-    private String depthStr = "Depth(inches):";
     private String heightStr = "Height(inches):";
     private String widthStr = "Width(inches):";
+    private String depthStr = "Depth(inches):";
     
     // Arrays of string variables for JComboBoxes
     private String[] typeStrings = {"Pet", "Food", "Clothing", "Cleaning "
@@ -115,9 +115,9 @@ public class ProductInputGUI
     private JPanel productNumberP;
     private JPanel nameP;                                    
     private JPanel typeP;
-    private JPanel depthP;
     private JPanel heightP;
     private JPanel widthP;
+    private JPanel depthP;
     private JPanel addProductButtonP;
             
     // Medical Clinic database object
@@ -187,10 +187,6 @@ public class ProductInputGUI
         typeP.add(typeL);
         typeP.add(typeCB);
 //        lastNameP.add(typeP);
-        depthP = new JPanel();
-//        depthP.setLayout(gridLayout);
-        depthP.add(depthL);
-        depthP.add(depthTF);
         heightP = new JPanel();
 //        heightP.setLayout(gridLayout);
         heightP.add(heightL);
@@ -199,14 +195,18 @@ public class ProductInputGUI
 //        widthP.setLayout(gridLayout);
         widthP.add(widthL);
         widthP.add(widthTF);
+        depthP = new JPanel();
+//        depthP.setLayout(gridLayout);
+        depthP.add(depthL);
+        depthP.add(depthTF);
         
         // Nest JPanels within base JPanel
         panel.add(productNumberP);
         panel.add(nameP);
         panel.add(typeP);
-        panel.add(depthP);
         panel.add(heightP);
         panel.add(widthP);
+        panel.add(depthP);
         panel.add(addProductButtonP);
         return panel;
     }
