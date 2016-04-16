@@ -16,10 +16,15 @@ public class Tests {
     public static void main(String[] args) {
         System.out.println(connectToDatabaseTest());
         System.out.println(addProductTest());
+        System.out.println(determineProductIDTest());
         System.out.println(removeProductTest());
         System.out.println(addStoreConfigurationTest());
+        System.out.println(determineStoreIDTest());
         System.out.println(removeStoreConfigurationTest());
         System.out.println(getProductListTest());
+        System.out.println(getStoreNumberListTest());
+        System.out.println(determineTypeIDTest());
+        System.out.println(determineTypeTest());
     }
     
     public static String addProductTest() {
@@ -27,9 +32,9 @@ public class Tests {
             optimizer.addProduct("12345", "Test Product", "Test Type", "1", "1", "1");
         }
         catch (Exception e) {
-            return e.getMessage() + "\nAdd Product Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nAdd Product Test Failed" + "\n******************************************\n";
         }
-        return "Add Product Test Passed";
+        return "\n******************************************\n" + "Add Product Test Passed" + "\n******************************************\n";
     }
     
     public static String removeProductTest() {
@@ -37,9 +42,9 @@ public class Tests {
             optimizer.removeProduct("12345");
         }
         catch (Exception e) {
-            return e.getMessage() + "\nRemove Product Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nRemove Product Test Failed" + "\n******************************************\n";
         }
-        return "Remove Product Test Passed";
+        return "\n******************************************\n" + "Remove Product Test Passed" + "\n******************************************\n";
     }
     
     public static String addStoreConfigurationTest() {
@@ -47,9 +52,9 @@ public class Tests {
             optimizer.addStore("ST101", "Test Store", "100", "25", "25", "25", "25");
         }
         catch (Exception e) {
-            return e.getMessage() + "\nAdd Store Configuration Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nAdd Store Configuration Test Failed" + "\n******************************************\n";
         }
-        return "Add Store Configuration Test Passed";
+        return "\n******************************************\n" + "Add Store Configuration Test Passed" + "\n******************************************\n";
     }
     
     public static String removeStoreConfigurationTest() {
@@ -57,9 +62,9 @@ public class Tests {
             optimizer.removeStore("ST101");
         }
         catch (Exception e) {
-            return e.getMessage() + "\nRemove Store Configuration Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nRemove Store Configuration Test Failed" + "\n******************************************\n";
         }
-        return "Remove Store Configuration Test Passed";
+        return "\n******************************************\n" + "Remove Store Configuration Test Passed" + "\n******************************************\n";
     }
     
     public static String connectToDatabaseTest() {
@@ -67,9 +72,9 @@ public class Tests {
             optimizer.connectToDatabase();
         }
         catch (Exception e) {
-            return e.getMessage() + "\nConnect To Database Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nConnect To Database Test Failed" + "\n******************************************\n";
         }
-        return "Connect To Database Test Passed";
+        return "\n******************************************\n" + "Connect To Database Test Passed" + "\n******************************************\n";
     }
     
     public static String getProductListTest() {
@@ -77,8 +82,58 @@ public class Tests {
             optimizer.getProductList();
         }
         catch (Exception e) {
-            return e.getMessage() + "\nGet Product List Test Failed";
+            return e.getMessage() + "\n******************************************\n" + "\nGet Product List Test Failed" + "\n******************************************\n";
         }
-        return "Get Product List Test Passed";
+        return "\n******************************************\n" +"Get Product List Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String getStoreNumberListTest() {
+        try {
+            optimizer.getStoreNumberList();
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nGet Store Number List Test Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Get Store Number List Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String determineTypeIDTest() {
+        try {
+            optimizer.determineTypeID("Pet");
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nDetermine Type ID Test Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Determine Type ID Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String determineTypeTest() {
+        try {
+            optimizer.determineType(1);
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nDetermine Type Test Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Determine Type Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String determineProductIDTest() {
+        try {
+            optimizer.determineProductID("12345");
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nDetermine Product ID Test Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Determine Product ID Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String determineStoreIDTest() {
+        try {
+            optimizer.determineStoreID("ST101");
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nDetermine Store ID Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Determine Store ID Test Passed" + "\n******************************************\n";
     }
 }
