@@ -14,11 +14,11 @@ public class Tests {
     private static Optimizer optimizer = new Optimizer();
     
     public static void main(String[] args) {
+        System.out.println(connectToDatabaseTest());
         System.out.println(addProductTest());
         System.out.println(removeProductTest());
         System.out.println(addStoreConfigurationTest());
         System.out.println(removeStoreConfigurationTest());
-        System.out.println(connectToDatabaseTest());
         System.out.println(getProductListTest());
     }
     
