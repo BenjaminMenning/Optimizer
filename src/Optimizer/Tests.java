@@ -100,6 +100,9 @@ public class Tests {
     public static String determineTypeIDTest() {
         try {
             optimizer.determineTypeID("Pet");
+            optimizer.determineTypeID("Food");
+            optimizer.determineTypeID("Clothing");
+            optimizer.determineTypeID("Cleaning Supplies");
         }
         catch (Exception e) {
             return e.getMessage() + "\n******************************************\n" + "\nDetermine Type ID Test Failed" + "\n******************************************\n";
@@ -110,6 +113,9 @@ public class Tests {
     public static String determineTypeTest() {
         try {
             optimizer.determineType(1);
+            optimizer.determineType(2);
+            optimizer.determineType(3);
+            optimizer.determineType(4);
         }
         catch (Exception e) {
             return e.getMessage() + "\n******************************************\n" + "\nDetermine Type Test Failed" + "\n******************************************\n";
