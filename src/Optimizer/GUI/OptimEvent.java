@@ -17,25 +17,27 @@ import javax.swing.JPanel;
  * @author JDiercks14
  */
 public class OptimEvent extends javax.swing.JPanel {
+   
+    //True = Width
+    //False = Height
+    public static boolean WidthOrHeight = true;
     /**
      * Creates new form OptimEvent
      */
-   public static void main(String[] args) {
-    java.awt.EventQueue.invokeLater(new Runnable() {
-          public void run() {
-               OptimEvent frame = new OptimEvent();
-               frame.setVisible(true);
-          }
-    });
-    
-    
-    
-    
-} 
+//   public static void main(String[] args) {
+//    java.awt.EventQueue.invokeLater(new Runnable() {
+//          public void run() {
+//               OptimEvent frame = new OptimEvent();
+//               frame.setVisible(true);
+//          }
+//    });                
+//} 
     
     
     public OptimEvent() {
-        initComponents();                      
+        initComponents();  
+        jComboBox1.addItem("hhhhhh");
+        
     }
 
     /**
@@ -50,10 +52,10 @@ public class OptimEvent extends javax.swing.JPanel {
         group_buttons = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        PrintOut = new javax.swing.JTextArea();
+        printOut = new javax.swing.JTextArea();
         sortWidth = new javax.swing.JRadioButton();
         sortHeight = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        optimizationCall = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
@@ -69,9 +71,9 @@ public class OptimEvent extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        PrintOut.setColumns(20);
-        PrintOut.setRows(5);
-        jScrollPane1.setViewportView(PrintOut);
+        printOut.setColumns(20);
+        printOut.setRows(5);
+        jScrollPane1.setViewportView(printOut);
 
         group_buttons.add(sortWidth);
         sortWidth.setText("Sort by Width");
@@ -89,17 +91,17 @@ public class OptimEvent extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Optmize by Constraints");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        optimizationCall.setText("Optmize by Constraints");
+        optimizationCall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                optimizationCallActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Optimizer");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setEditable(true);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -125,28 +127,29 @@ public class OptimEvent extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(optimizationCall)
                         .addGap(117, 117, 117))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(sortWidth)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sortHeight)
-                        .addGap(117, 117, 117))))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(sortWidth)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortHeight)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,7 +158,7 @@ public class OptimEvent extends javax.swing.JPanel {
                     .addComponent(sortWidth)
                     .addComponent(sortHeight))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(optimizationCall)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -163,15 +166,19 @@ public class OptimEvent extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sortHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortHeightActionPerformed
-
+        WidthOrHeight = false;
+        printOut.setText(Boolean.toString(WidthOrHeight));
+        
     }//GEN-LAST:event_sortHeightActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void optimizationCallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimizationCallActionPerformed
+        
+    }//GEN-LAST:event_optimizationCallActionPerformed
 
     private void sortWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortWidthActionPerformed
-
+        WidthOrHeight = true;        
+        printOut.setText(Boolean.toString(WidthOrHeight));
+                
     }//GEN-LAST:event_sortWidthActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -182,14 +189,14 @@ public class OptimEvent extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea PrintOut;
     private javax.swing.ButtonGroup group_buttons;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton optimizationCall;
+    private javax.swing.JTextArea printOut;
     private javax.swing.JRadioButton sortHeight;
     private javax.swing.JRadioButton sortWidth;
     // End of variables declaration//GEN-END:variables
