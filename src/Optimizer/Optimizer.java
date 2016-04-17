@@ -1,6 +1,8 @@
 package Optimizer;
 
 
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,6 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.JOptionPane;
+import java.io.*;
+import java.io.PrintWriter;
 
 /** 
  * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
@@ -540,10 +545,13 @@ public class Optimizer {
         double maxHeight = 84;
         double totalProductWidth = 0;    
         double shelfHeight = 0;
-        double shelfWidth = 2;
-        double tempHeight = 0;
+        double individuelShelfHeight = 2;
         double tallest = 0;
        
+        double shelfAheight = 0;
+        double shelfBheight = 0;
+        double shelfCheight = 0;
+        double shelfDheight = 0;
                 
         Optimizer optimizer = new Optimizer();
         
@@ -579,6 +587,8 @@ public class Optimizer {
         tallest = 0;
         listSize = widthList.size();
         
+        shelfAheight = tallest;
+        
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < maxWidth) {
                 shelf.get(0).add(widthList.get(0));            
@@ -593,21 +603,15 @@ public class Optimizer {
             else{
                 break;
             }            
-        }//end for
-        
-        System.out.println("1s end tallest Is: " + tallest);
-        System.out.println("1s end tallest Is: " + totalProductWidth + "\n\n\n\n\n");
+        }//end for       
               
 //Shelve 2 Hight -------------------------------------------------------------------
-        shelfHeight = (tallest + shelfWidth);
+        shelfHeight += (tallest + individuelShelfHeight);
         System.out.println("Next Shelf high is  " + shelfHeight+ "\n");
+        shelfBheight = shelfHeight;
 
-
-//Filling shelf Two------------------------------------------------------ 
-       
-       tempHeight = (shelfHeight+2);
-       
-       if (tempHeight < maxHeight){
+//Filling shelf Two------------------------------------------------------                      
+       if (shelfHeight < maxHeight){
         tallest = 0;
         listSize = widthList.size();
         totalProductWidth = 0;
@@ -627,18 +631,18 @@ public class Optimizer {
                 break;
             }            
         }//end for
-        
-        System.out.println("1s end tallest Is: " + tallest);
-        System.out.println("1s end tallest Is: " + totalProductWidth + "\n\n\n\n\n");
+
     
        }//end if
        
        
       //Filling shelf Three------------------------------------------------------  
-       
-             tempHeight = (shelfHeight+2);
-       
-       if (tempHeight < maxHeight){
+        //Height for Shelf 3
+       shelfHeight += (tallest + individuelShelfHeight);               
+       shelfCheight = shelfHeight;
+           
+       //Filling Shelf 3
+       if (shelfHeight < maxHeight){
         tallest = 0;
         listSize = widthList.size();
         totalProductWidth = 0;
@@ -658,22 +662,16 @@ public class Optimizer {
                 break;
             }            
         }//end for
-        
-        System.out.println("1s end tallest Is: " + tallest);
-        System.out.println("1s end tallest Is: " + totalProductWidth + "\n\n\n\n\n");
     
-       }//end if
-       
-       
-       
-       
-       
+       }//end if                                   
        
        //Filling shelf Four------------------------------------------------------ 
+            //Shelf 4 Height
+            shelfHeight += (tallest + individuelShelfHeight);               
+            shelfDheight = shelfHeight;
+
        
-             tempHeight = (shelfHeight+2);
-       
-       if (tempHeight < maxHeight){
+       if (shelfHeight < maxHeight){
         tallest = 0;
         listSize = widthList.size();
         totalProductWidth = 0;
@@ -692,18 +690,12 @@ public class Optimizer {
             else{
                 break;
             }            
-        }//end for
-        
-        System.out.println("1s end tallest Is: " + tallest);
-        System.out.println("1s end tallest Is: " + totalProductWidth + "\n\n\n\n\n");
-    
+        }//end for           
        }//end if
        
        
-       
-       
-       
-       shelfPrintOut();
+       //Calling Print out
+       shelfPrintOut(shelfAheight, shelfBheight, shelfCheight, shelfDheight);
        
        
 //       //Shelf PrintOUT--------------------------------------------------------
@@ -797,31 +789,30 @@ public class Optimizer {
 //        
     }//end main
     
-    public static double shelveHeight(double hght) {
-        
-        
-        return hght;
-    }
     
-    
-    public static void shelfPrintOut() {
-           int indexA = 1;
+    public static void shelfPrintOut(double A, double B, double C, double D) {
+       
+       File fileName = new File("Test File") ;
+        
+       int indexA = 1;
        int indexB = 1;
        int indexC = 1;
        int indexD = 1;       
        
        System.out.println("\n\nShelf 1");
+       System.out.println("\nHeight of Shelf 1 is: " + A);
+       
        System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");
        
        for(int i =0; i < shelf.get(0).size(); i++){
             System.out.print("A" + indexA + ".\t");
             System.out.print(shelf.get(0).get(i));
             indexA++;
-       }//end A forLoop
-       
+       }//end A forLoop                          
        
        if(!shelf.get(1).isEmpty()){
            System.out.println("\n\nShelf 2");
+           System.out.println("\nHeight of Shelf 2 is: " + B);
             System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
            for(int i =0; i < shelf.get(1).size(); i++){
             System.out.print("B" + indexB + ".\t");
@@ -833,6 +824,7 @@ public class Optimizer {
        
         if(!shelf.get(2).isEmpty()){
             System.out.println("\n\nShelf 3");
+            System.out.println("\nHeight of Shelf 3 is: " + C);
             System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");            
            for(int i =0; i < shelf.get(2).size(); i++){
             System.out.print("C" + indexC + ".\t");
@@ -844,7 +836,7 @@ public class Optimizer {
        
         if(!shelf.get(3).isEmpty()){
            System.out.println("\n\nShelf 4");
-           
+           System.out.println("\nHeight of Shelf 4 is: " + D);
             System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
            for(int i =0; i < shelf.get(3).size(); i++){
             System.out.print("D" + indexD + ".\t");
@@ -854,8 +846,67 @@ public class Optimizer {
             }//end B forLoop
        }//end B if 
             
+//to Doc starts here========================================================================================================        
+        try {
+           
+       PrintWriter output = new PrintWriter(fileName);
+       output.println("\n\nShelf 1");
+       output.println("\nHeight of Shelf 1 is: " + A);
+       output.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");
+           
+       for(int i =0; i < shelf.get(0).size(); i++){
+            output.print("A" + indexA + ".\t");
+            output.println(shelf.get(0).get(i));
+            indexA++;
+       }//end A forLoop
+       output.println("\n");
+       
+        if(!shelf.get(1).isEmpty()){
+           output.println("\n\nShelf 2");
+           output.println("\nHeight of Shelf 2 is: " + B);
+           output.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
+        for(int i =0; i < shelf.get(1).size(); i++){
+            output.print("B" + indexB + ".\t");
+            output.println(shelf.get(1).get(i));
+            indexB++;
+
+            }//end B forLoop
+            output.println("\n");
+        }//end B if  
+       
+        if(!shelf.get(2).isEmpty()){
+            output.println("\n\nShelf 3");
+            output.println("\nHeight of Shelf 3 is: " + C);
+            output.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");            
+        for(int i =0; i < shelf.get(2).size(); i++){
+            output.print("C" + indexC + ".\t");
+            output.println(shelf.get(1).get(i));
+            indexC++;
+
+            }//end C forLoop
+         output.println("\n");
+       }//end C if 
+       
+        if(!shelf.get(3).isEmpty()){
+           output.println("\n\nShelf 4");  
+           output.println("\nHeight of Shelf 4 is: " + D);
+           output.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
+           for(int i =0; i < shelf.get(3).size(); i++){
+            output.print("D" + indexD + ".\t");
+            output.println(shelf.get(3).get(i));
+            indexD++;
+
+            }//end B forLoop
+           output.println("\n");
+       }//end B if 
+                            
+       output.close();       
+           
+       }//end try
+       catch (Exception e){
+           JOptionPane.showMessageDialog(null, "I cannot create that file");
+       }//end catch
             
-    }
-    
+    }//end shelf print out    
     
 }//end class
