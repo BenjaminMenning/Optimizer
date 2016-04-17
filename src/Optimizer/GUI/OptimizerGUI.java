@@ -56,6 +56,8 @@ public class OptimizerGUI
     private JPanel productRemovalPanel;
     private JPanel productInputPanels;
     private JPanel productInputTabP;
+    
+    private JPanel optimEvent;
 
     private JPanel storeInputComboP;
     private JPanel storeInputPanel;
@@ -137,7 +139,14 @@ public class OptimizerGUI
         productInputPanels = new JPanel(new CardLayout());
         productInputPanels.add(productInputPanel, productInputStr);
         productInputPanels.add(productRemovalPanel, productRemovalStr);
-               
+          
+        //======================================================================
+        optimEvent = new JPanel();
+        optimEvent.setLayout(new BorderLayout());   
+//        productInputTabP.add(optimEvent, "here");
+        
+        
+        
         // Adds product input panels to tab and sets layout
         productInputTabP.add(productInputPanels);
         productInputTabP.add(productInputComboP,BorderLayout.PAGE_END);
@@ -178,11 +187,16 @@ public class OptimizerGUI
         // Adds store input panels to tab and sets layout
         storeInputTabP.add(storeInputPanels);
         storeInputTabP.add(storeInputComboP,BorderLayout.PAGE_END);
+        
+        optimEvent.add(storeInputPanels);
+        optimEvent.add(storeInputComboP,BorderLayout.PAGE_END);
+        
                        
         // Create JTabbedPane and add tab panels to pane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Product Input", productInputTabP);
         tabbedPane.addTab("Store Input", storeInputTabP);
+        tabbedPane.addTab("Optimizer", optimEvent);
         
         // Initialize JFrame properties
         optimizerGUIFrame.setTitle(inputTitleStr);

@@ -32,8 +32,10 @@ public class OptimEvent extends javax.swing.JPanel {
 //          }
 //    });                
 //} 
-    
-    
+//    public static void main(String[] argv){
+//           boolean WidthOrHeight = true;
+//    }
+//    
     public OptimEvent() {
         initComponents();  
         jComboBox1.addItem("hhhhhh");
