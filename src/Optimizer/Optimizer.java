@@ -527,6 +527,12 @@ public class Optimizer {
         return productList;
     }
     
+    public String generateReport(boolean isWidthSort, String storeNumber, String 
+            name, int totalUnits)
+    {
+        return "";
+    }
+    
     public static void main(String[] args) throws SQLException {
         
         boolean done = false;
