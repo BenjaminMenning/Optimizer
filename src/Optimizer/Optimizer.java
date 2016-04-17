@@ -697,11 +697,109 @@ public class Optimizer {
        
        
        
+       shelfPrintOut();
        
        
+//       //Shelf PrintOUT--------------------------------------------------------
+//       int indexA = 1;
+//       int indexB = 1;
+//       int indexC = 1;
+//       int indexD = 1;       
+//       
+//       System.out.println("\n\nShelf 1");
+//       System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");
+//       
+//       for(int i =0; i < shelf.get(0).size(); i++){
+//            System.out.print("A" + indexA + ".\t");
+//            System.out.print(shelf.get(0).get(i));
+//            indexA++;
+//       }//end A forLoop
+//       
+//       
+//       if(!shelf.get(1).isEmpty()){
+//           System.out.println("\n\nShelf 2");
+//            System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
+//           for(int i =0; i < shelf.get(1).size(); i++){
+//            System.out.print("B" + indexB + ".\t");
+//            System.out.print(shelf.get(1).get(i));
+//            indexB++;
+//
+//            }//end B forLoop
+//        }//end B if   
+//       
+//        if(!shelf.get(2).isEmpty()){
+//            System.out.println("\n\nShelf 3");
+//            System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");            
+//           for(int i =0; i < shelf.get(2).size(); i++){
+//            System.out.print("C" + indexC + ".\t");
+//            System.out.print(shelf.get(1).get(i));
+//            indexC++;
+//
+//            }//end C forLoop
+//       }//end C if 
+//       
+//        if(!shelf.get(3).isEmpty()){
+//           System.out.println("\n\nShelf 4");
+//           
+//            System.out.println("Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth");           
+//           for(int i =0; i < shelf.get(3).size(); i++){
+//            System.out.print("D" + indexD + ".\t");
+//            System.out.print(shelf.get(3).get(i));
+//            indexD++;
+//
+//            }//end B forLoop
+//       }//end B if 
        
-       //Shelf PrintOUT--------------------------------------------------------
-       int indexA = 1;
+       
+
+       
+//        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
+        
+//        Optimizer optimizer = new Optimizer();
+//        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
+//            10);
+//        optimizer.connectToDatabase();
+//        System.out.println(optimizer.getProductNumberList());
+////        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
+////        optimizer.removeProduct("4J329KF3");
+//
+////        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
+////        optimizer.removeStore("3J40IO");
+//        // TODO code application logic here
+//        
+//        //Filling a Shelf based on width
+//        int index = 0;
+//        while (!done) {
+//        if(maxWidth > totalProductWidth) {
+//            //Shelf = heightList.get(index);
+//            Shelf.add(index, heightList.get(index));
+//            index++;
+//            totalProductWidth += heightList.get(index).getWidth();
+//        }//end if
+//        
+//        if (totalProductWidth > maxWidth) {
+//            totalProductWidth -= heightList.get(index).getWidth();            
+//            //Shelf; //remove last element 
+//            Shelf.remove(index);
+//            index--;
+//            done = true;
+//        }//end if
+//        
+//        }//end while
+//        
+//        
+//        
+    }//end main
+    
+    public static double shelveHeight(double hght) {
+        
+        
+        return hght;
+    }
+    
+    
+    public static void shelfPrintOut() {
+           int indexA = 1;
        int indexB = 1;
        int indexC = 1;
        int indexD = 1;       
@@ -749,51 +847,9 @@ public class Optimizer {
 
             }//end B forLoop
        }//end B if 
-       
-       
-       
-//        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
-        
-//        Optimizer optimizer = new Optimizer();
-//        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
-//            10);
-//        optimizer.connectToDatabase();
-//        System.out.println(optimizer.getProductNumberList());
-////        optimizer.addProduct("4J329KF3", "Test", "1", "10", "10", "10");
-////        optimizer.removeProduct("4J329KF3");
-//
-////        optimizer.addStore("3J40IO", "Test", "40", "10", "10", "10", "10");
-////        optimizer.removeStore("3J40IO");
-//        // TODO code application logic here
-//        
-//        //Filling a Shelf based on width
-//        int index = 0;
-//        while (!done) {
-//        if(maxWidth > totalProductWidth) {
-//            //Shelf = heightList.get(index);
-//            Shelf.add(index, heightList.get(index));
-//            index++;
-//            totalProductWidth += heightList.get(index).getWidth();
-//        }//end if
-//        
-//        if (totalProductWidth > maxWidth) {
-//            totalProductWidth -= heightList.get(index).getWidth();            
-//            //Shelf; //remove last element 
-//            Shelf.remove(index);
-//            index--;
-//            done = true;
-//        }//end if
-//        
-//        }//end while
-//        
-//        
-//        
-    }//end main
-    
-    public static double shelveHeight(double hght) {
-        
-        
-        return hght;
+            
+            
     }
+    
     
 }//end class
