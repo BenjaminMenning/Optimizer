@@ -1,5 +1,7 @@
 package Optimizer;
 
+import java.util.ArrayList;
+
 /** 
  * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * 
@@ -33,10 +35,49 @@ public class Shelf {
     private final double length =24;
     private final double width =48;
     private String shelfId;
+    
+    private ArrayList<Product> productList = new ArrayList<>();
+
+    
 
     public Shelf(String shelfId) {
         this.shelfId = "NA";
         this.shelfId = shelfId;
+    }
+       
+    
+    public double fillShelfByHeight(ArrayList<Product> heightList) {
+        double tallest = 0;
+        double listSize = 0;
+        double totalProductWidth = 0;        
+                    
+        listSize = heightList.size();                
+        
+        for (double i = 0; i < listSize; i++) {
+            if (totalProductWidth < width) {
+                productList.add(heightList.get(0));            
+                totalProductWidth += heightList.get(0).getWidth();
+                
+                if(tallest < heightList.get(0).getHeight()){
+                    tallest = heightList.get(0).getHeight();                        
+                }//end if                 
+                
+                heightList.remove(0);
+            }//end if
+            else{
+                break;
+            }//end else            
+        }//end for       
+        
+        return tallest;
+        
+    }//end fillShelfByHeight
+    
+    
+    
+
+    Shelf() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public double getHeight() {

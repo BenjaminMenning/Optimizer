@@ -58,7 +58,9 @@ public class Optimizer {
     
     public static ArrayList<ArrayList<Product>> shelf = new ArrayList<ArrayList<Product>>();
     
-    public static ArrayList<Product> productList = new ArrayList<>();
+    public ArrayList<Unit> Units = new ArrayList<Unit>();
+    
+    public static ArrayList<Product> productList = new ArrayList<Product>();
     public static Product sortedWidth = new Product();
     public static Product sortedHeight = new Product();
     //public static Product Shelf = new Product();
@@ -694,6 +696,7 @@ public class Optimizer {
        }//end if
        
        
+       fillUnits();
        //Calling Print out
        shelfPrintOut(shelfAheight, shelfBheight, shelfCheight, shelfDheight);
        
@@ -907,6 +910,16 @@ public class Optimizer {
            JOptionPane.showMessageDialog(null, "I cannot create that file");
        }//end catch
             
-    }//end shelf print out    
+    }//end shelf print out   
+    
+    
+    public void fillUnits(){
+        
+        
+        
+        while(!productList.isEmpty()){
+            Units.add();
+        }       
+    }//end fillUnits
     
 }//end class

@@ -1,5 +1,7 @@
 package Optimizer;
 
+import java.util.ArrayList;
+
 /** 
  * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * 
@@ -28,49 +30,28 @@ package Optimizer;
  * @version 04/26/2016 
  */
 public class Unit {
-    private double length= 24;
-    private double width = 48;
-    private double depth = 24;
-    private String unitID;
-    private int shelfAmount = 0;
- 
-    public void setShelfAmount(int amount)
-    {
+    ArrayList<Shelf> shelves = new ArrayList<Shelf>(4);
+      
+    
+    public Unit() {
+        shelves.add(new Shelf());
+        shelves.add(new Shelf());
+        shelves.add(new Shelf());
+        shelves.add(new Shelf());                        
         
     }
     
-    public int getShelfAmount()
-    {
-        return 0;
-    }
-    
-    public void setShelfWidth(double width)
-    {
+    public void fillShelf(ArrayList<Product> heightList) {
+        for(Shelf shelf : shelves) {
+            shelf.fillShelfByHeight(heightList);             
+        }
         
-    }
-    
-    public double getShelfWidth()
-    {
-        return 0;
-    }
-
-    public void setShelfLength(double length)
-    {
+}
+    public ArrayList<Shelf> getShelves() {
         
-    }
-    
-    public double getShelfLength()
-    {
-        return 0;
-    }
-
-    public void setShelfDepth(double depth)
-    {
         
+        
+        return shelves;
     }
     
-    public double getShelfDepth()
-    {
-        return 0;
-    }
 }
