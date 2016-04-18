@@ -51,10 +51,11 @@ public class Unit {
         
         
         return shelves;
-        
-        
-        
-        
+
     }
-    
+
+    @Override
+    public String toString() {
+        return "Unit{" + "shelves=" + shelves + '}';
+    } 
 }

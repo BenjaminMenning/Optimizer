@@ -101,10 +101,5 @@ public class Shelf {
     public String toString() {
         return "Shelf{" + "height=" + height + ", length=" + length 
                 + ", width=" + width + ", shelfId=" + shelfId + '}';
-    }
-   
-     
-
-   
-    
+    }     
 }
