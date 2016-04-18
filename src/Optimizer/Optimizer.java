@@ -58,7 +58,7 @@ public class Optimizer {
     
     public static ArrayList<ArrayList<Product>> shelf = new ArrayList<ArrayList<Product>>();
     
-    public ArrayList<Unit> Units = new ArrayList<Unit>();
+    public static ArrayList<Unit> Units = new ArrayList<Unit>();
     
     public static ArrayList<Product> productList = new ArrayList<Product>();
     public static Product sortedWidth = new Product();
@@ -913,12 +913,12 @@ public class Optimizer {
     }//end shelf print out   
     
     
-    public void fillUnits(){
-        
-        
-        
+    public static void fillUnits(){       
+          
         while(!productList.isEmpty()){
-            Units.add();
+            Unit tempUnit = new Unit();
+            tempUnit.fillShelf(productList);
+            Units.add(tempUnit);
         }       
     }//end fillUnits
     
