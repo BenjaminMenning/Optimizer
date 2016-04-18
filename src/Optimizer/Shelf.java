@@ -63,13 +63,17 @@ public class Shelf {
                 break;
             }//end else            
         }//end for       
-
+                
+        
+        this.shelfHeight = tallest;
+                
         return tallest;
 
+        
     }//end fillShelfByHeight
 
     public Shelf() {
-
+        
     }//end shelf
 
     public double getShelfHeight() {

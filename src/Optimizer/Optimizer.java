@@ -924,11 +924,13 @@ public class Optimizer {
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
         int unitCount = 0; 
         while(!widthList.isEmpty()){
-            
+            double height = 0;
             Unit tempUnit = new Unit();
+            
             tempUnit.setUnitNumber(unitCount);
-            tempUnit.fillShelf(widthList);            
+            tempUnit.fillShelf(widthList);                       
             Units.add(tempUnit);
+            
             unitCount++;
        
         }       
