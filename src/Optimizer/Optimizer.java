@@ -564,12 +564,15 @@ public class Optimizer {
         shelf.add(new ArrayList<Product>());
         
         optimizer.connectToDatabase();
-        ArrayList<Product> productList = new ArrayList<Product>();
+       // ArrayList<Product> productList = new ArrayList<Product>();
         productList = optimizer.getProductList();
 //        System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
         //System.out.println(widthList.toString());
+    
         
+        
+/*        
         //shelf Hight----------------------------------------------------------
         double templargest = 0;       
         for(int i =0; i < widthList.size(); i++){
@@ -694,11 +697,14 @@ public class Optimizer {
             }            
         }//end for           
        }//end if
+*/
+        
+       System.out.println("here we are");
+       fillUnits();       
+       unitPrint();
        
-       
-       fillUnits();
        //Calling Print out
-       shelfPrintOut(shelfAheight, shelfBheight, shelfCheight, shelfDheight);
+       //shelfPrintOut(shelfAheight, shelfBheight, shelfCheight, shelfDheight);
        
        
 //       //Shelf PrintOUT--------------------------------------------------------
@@ -921,5 +927,13 @@ public class Optimizer {
             Units.add(tempUnit);
         }       
     }//end fillUnits
+    
+    public static void unitPrint(){
+        
+        for(int i = 0; i < Units.size(); i++){
+            System.out.println(Units.get(i));
+        }
+        
+    }
     
 }//end class
