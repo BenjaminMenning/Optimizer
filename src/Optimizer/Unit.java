@@ -31,7 +31,12 @@ import java.util.ArrayList;
  */
 public class Unit {
     ArrayList<Shelf> shelves = new ArrayList<Shelf>(4);
-      
+    int unitNumber;
+
+    public Unit(int unitNumber) {
+        this.unitNumber = unitNumber;
+    }          
+    
     public Unit() {
         shelves.add(new Shelf());
         shelves.add(new Shelf());
@@ -44,7 +49,7 @@ public class Unit {
         for(Shelf shelf : shelves) {
             shelf.fillShelfByHeight(heightList);             
         }
-        
+        unitNumber +=1;
 }
     public ArrayList<Shelf> getShelves() {
         
@@ -54,8 +59,21 @@ public class Unit {
 
     }
 
+    public void setShelves(ArrayList<Shelf> shelves) {
+        this.shelves = shelves;
+    }
+
+    public void setUnitNumber(int unitNumber) {
+        this.unitNumber = unitNumber;
+    }
+
+    public int getUnitNumber() {
+        return unitNumber;
+    }
+
     @Override
     public String toString() {
-        return "Unit{" + "shelves=" + shelves + '}';
-    } 
+        return String.format("\n\nUnit: " + unitNumber 
+                + "\n" + shelves);
+    }         
 }

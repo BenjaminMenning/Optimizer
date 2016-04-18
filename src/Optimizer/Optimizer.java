@@ -759,8 +759,7 @@ public class Optimizer {
        
        
 
-       
-//        ArrayList<Product> heightList = optimizer.heightSorter(productList);        
+          ArrayList<Product> heightList = optimizer.heightSorter(productList);        
         
 //        Optimizer optimizer = new Optimizer();
 //        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
@@ -920,11 +919,18 @@ public class Optimizer {
     
     
     public static void fillUnits(){       
-          
-        while(!productList.isEmpty()){
+      
+        Optimizer optimizer = new Optimizer(); 
+        ArrayList<Product> widthList = optimizer.heightSorter(productList);
+        int unitCount = 0; 
+        while(!widthList.isEmpty()){
+            
             Unit tempUnit = new Unit();
-            tempUnit.fillShelf(productList);
+            tempUnit.setUnitNumber(unitCount);
+            tempUnit.fillShelf(widthList);            
             Units.add(tempUnit);
+            unitCount++;
+       
         }       
     }//end fillUnits
     
