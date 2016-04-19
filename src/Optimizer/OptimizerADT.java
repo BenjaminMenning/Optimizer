@@ -1,45 +1,80 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Optimizer;
 
-/** 
- * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
- * 
- * Date:            04/26/2016 
- *                
- * Course:          CS 410 - 01, Spring 2016
- * 
- * Assignment:      Software Engineering Project
- * 
- * Description:     This program is a shelving space management program that 
- *                  utilizes an SQLite relational database management system to 
- *                  allow users to input and view information about stores and 
- *                  products, and then uses that information to optimize the 
- *                  shelving space utilized for each product within a store.
- *                  It allows users to add and remove products or stores and 
- *                  also allows a user to optimize the product layout for a 
- *                  store and display a report containing the layout 
- *                  information. 
- */
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-/** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
- * 
- * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
- * @version 04/26/2016 
+/**
+ *
+ * @author bmenning13
  */
 public interface OptimizerADT {
-    
-  public void addProduct(Product pet);
-  public void removeProduct(Product pet);
-  public void addStore(Store StoreId);
-  public void removeStore(Store StoreId);
-  public void loadStore(Store storeID);
-  public void connectToDatabase();
-  public void loadDatabaseInfo();
-  public void optimizeShelves(Product[] product, Shelf[] shelfId);
-  public void displayReport();
-  public void generateReport();
-  
-  
+
+    void addProduct(String productNumber, String productName, String productType, String height, String width, String depth) throws SQLException;
+
+    void addStore(String storeNumber, String storeName, String totalUnits, String petUnits, String foodUnits, String clothingUnits, String cleaningUnits) throws SQLException;
+
+    void connectToDatabase();
+
+    String determineProductID(String productNumber) throws SQLException;
+
+    String determineStoreID(String storeNumber) throws SQLException;
+
+    String determineType(int typeID) throws SQLException;
+
+    String determineTypeID(String type) throws SQLException;
+
+    String generateReport(boolean isWidthSort, String storeNumber, String name, int totalUnits);
+
+    ArrayList<Product> getProductList() throws SQLException;
+
+    ArrayList<String> getProductNumberList() throws SQLException;
+
+    ArrayList<String> getStoreNumberList() throws SQLException;
+
+    //    public static void heightSorter() {
+    //
+    //        //ArrayList<Product> cloneList = new ArrayList(productList);
+    //
+    //
+    //        int smallInt = 0;
+    //        int j = 0;
+    //        int smallIntIndex = 0;
+    //
+    //        for(int i=1; i < cloneList.size()-1; i++) {
+    //            smallInt = (int) cloneList.get(i-1).getHeight();
+    //            smallIntIndex = (i-1);
+    //
+    //            for(j=i; j < cloneList.size(); j++){
+    //                if(cloneList.get(j).getHeight() < smallInt){
+    //                    smallInt = (int) cloneList.get(j).getHeight();
+    //                    smallIntIndex = j;
+    //                }//end if
+    //            }//end for
+    //
+    //            swap(i-1, smallIntIndex);
+    //
+    //        }//end for
+    //
+    //
+    //    }//end heightSorter
+    //
+    //    private  void swap(int sourceIndex, int destIndex) {
+    //        int temp = cloneList.get(destIndex);
+    //        cloneList.set(destIndex, cloneList.get(sourceIndex));
+    //        cloneList.set(sourceIndex, temp);
+    //    }
+    ArrayList<Product> heightSorter(ArrayList<Product> prodList);
+
+    void removeProduct(String productNumber) throws SQLException;
+
+    void removeStore(String storeNumber) throws SQLException;
+
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    ArrayList<Product> widthSorter(ArrayList<Product> prodList);
     
 }
