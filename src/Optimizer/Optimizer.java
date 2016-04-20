@@ -56,6 +56,8 @@ public class Optimizer {
     // Connection variable for connecting to the database
     private Connection connection = null;
     
+    public int shelfIndex = 0;
+    
     public static ArrayList<ArrayList<Product>> shelf = new ArrayList<ArrayList<Product>>();
     
     public static ArrayList<Unit> Units = new ArrayList<Unit>();
@@ -67,7 +69,7 @@ public class Optimizer {
     
     public static ArrayList<Product> Shelf = new ArrayList<>();
         
-//    public ArrayList<Product> widthList = heightSorter();
+//    public ArrayList<Product> heightList = heightSorter();
 //    public ArrayList<Product> heightList = widthSorter();
     
 
@@ -568,14 +570,14 @@ public class Optimizer {
         productList = optimizer.getProductList();
 //        System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
-        //System.out.println(widthList.toString());
+        //System.out.println(heightList.toString());
     
         
         
 /*        
         //shelf Hight----------------------------------------------------------
         double templargest = 0;       
-        for(int i =0; i < widthList.size(); i++){
+        for(int i =0; i < heightList.size(); i++){
                            
         }//end for        
         System.out.println("Tallset prod: " + templargest);
@@ -585,25 +587,25 @@ public class Optimizer {
         nextShelf = templargest + 2;        
         System.out.println("Next Shelf Height is: " + nextShelf);                        
         
-        double listSize = widthList.size();
+        double listSize = heightList.size();
         
         
         //Filling Shelf one EDI++++++++++++++++++++++++++++++++++++++++++++++++
         tallest = 0;
-        listSize = widthList.size();
+        listSize = heightList.size();
         
         shelfAheight = tallest;
         
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < maxWidth) {
-                shelf.get(0).add(widthList.get(0));            
-                totalProductWidth += widthList.get(0).getWidth();
+                shelf.get(0).add(heightList.get(0));            
+                totalProductWidth += heightList.get(0).getWidth();
                 
-                if(tallest < widthList.get(0).getHeight()){
-                    tallest = widthList.get(0).getHeight();                        
+                if(tallest < heightList.get(0).getHeight()){
+                    tallest = heightList.get(0).getHeight();                        
                 }//end if                 
                 
-                widthList.remove(0);
+                heightList.remove(0);
             }//end if
             else{
                 break;
@@ -618,19 +620,19 @@ public class Optimizer {
 //Filling shelf Two------------------------------------------------------                      
        if (shelfHeight < maxHeight){
         tallest = 0;
-        listSize = widthList.size();
+        listSize = heightList.size();
         totalProductWidth = 0;
         
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < maxWidth) {
-                shelf.get(1).add(widthList.get(0));            
-                totalProductWidth += widthList.get(0).getWidth();
+                shelf.get(1).add(heightList.get(0));            
+                totalProductWidth += heightList.get(0).getWidth();
                 
-                if(tallest < widthList.get(0).getHeight()){
-                    tallest = widthList.get(0).getHeight();                        
+                if(tallest < heightList.get(0).getHeight()){
+                    tallest = heightList.get(0).getHeight();                        
                 }//end if                 
                 
-                widthList.remove(0);
+                heightList.remove(0);
             }//end if
             else{
                 break;
@@ -649,19 +651,19 @@ public class Optimizer {
        //Filling Shelf 3
        if (shelfHeight < maxHeight){
         tallest = 0;
-        listSize = widthList.size();
+        listSize = heightList.size();
         totalProductWidth = 0;
         
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < maxWidth) {
-                shelf.get(2).add(widthList.get(0));            
-                totalProductWidth += widthList.get(0).getWidth();
+                shelf.get(2).add(heightList.get(0));            
+                totalProductWidth += heightList.get(0).getWidth();
                 
-                if(tallest < widthList.get(0).getHeight()){
-                    tallest = widthList.get(0).getHeight();                        
+                if(tallest < heightList.get(0).getHeight()){
+                    tallest = heightList.get(0).getHeight();                        
                 }//end if                 
                 
-                widthList.remove(0);
+                heightList.remove(0);
             }//end if
             else{
                 break;
@@ -678,19 +680,19 @@ public class Optimizer {
        
        if (shelfHeight < maxHeight){
         tallest = 0;
-        listSize = widthList.size();
+        listSize = heightList.size();
         totalProductWidth = 0;
         
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < maxWidth) {
-                shelf.get(3).add(widthList.get(0));            
-                totalProductWidth += widthList.get(0).getWidth();
+                shelf.get(3).add(heightList.get(0));            
+                totalProductWidth += heightList.get(0).getWidth();
                 
-                if(tallest < widthList.get(0).getHeight()){
-                    tallest = widthList.get(0).getHeight();                        
+                if(tallest < heightList.get(0).getHeight()){
+                    tallest = heightList.get(0).getHeight();                        
                 }//end if                 
                 
-                widthList.remove(0);
+                heightList.remove(0);
             }//end if
             else{
                 break;
@@ -921,14 +923,12 @@ public class Optimizer {
     public static void fillUnits(){       
       
         Optimizer optimizer = new Optimizer(); 
-        ArrayList<Product> widthList = optimizer.heightSorter(productList);
+        ArrayList<Product> heightList = optimizer.heightSorter(productList);
         int unitCount = 0; 
-        while(!widthList.isEmpty()){
-            double height = 0;
-            Unit tempUnit = new Unit();
-            
+        while(!heightList.isEmpty()){            
+            Unit tempUnit = new Unit();            
             tempUnit.setUnitNumber(unitCount);
-            tempUnit.fillShelf(widthList);                       
+            tempUnit.fillShelf(heightList);                       
             Units.add(tempUnit);
             
             unitCount++;
@@ -942,6 +942,6 @@ public class Optimizer {
             System.out.println(Units.get(i));
         }
         
-    }
+    }    
     
 }//end class

@@ -31,56 +31,68 @@ public class Shelf {
     private final double width = 48;
     private final double height = 84;
     private final double depth = 24;
+    private final double physicalShelfHeight = 2;
 
     double shelfHeight;
-    double shelfNumber;
+    int shelfNumber;
+    
     private ArrayList<Product> productList = new ArrayList<>();
 
-    public Shelf(double shelfHeight, double shelfNumber) {
+    public Shelf(double shelfHeight, int shelfNumber) {
         this.shelfHeight = shelfHeight;
-        this.shelfNumber = shelfNumber;
+        this.shelfNumber = shelfNumber;        
+        
     }
 
-    public double fillShelfByHeight(ArrayList<Product> widthList) {
+    public double fillShelfByHeight(ArrayList<Product> heightList) {
         double tallest = 0;
         double listSize = 0;
-        double totalProductWidth = 0;
-
-        listSize = widthList.size();
+        double totalProductWidth = 0;       
+        
+        listSize = heightList.size();
 
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < width) {
-                productList.add(widthList.get(0));
-                totalProductWidth += widthList.get(0).getWidth();
+                productList.add(heightList.get(0));
+                totalProductWidth += heightList.get(0).getWidth();
 
-                if (tallest < widthList.get(0).getHeight()) {
-                    tallest = widthList.get(0).getHeight();
+                if (tallest < heightList.get(0).getHeight()) {
+                    tallest = heightList.get(0).getHeight();
                 }//end if                 
 
-                widthList.remove(0);
+                heightList.remove(0);
             }//end if
             else {
                 break;
             }//end else            
-        }//end for       
-                
+        }//end for                                               
+       
         
-        this.shelfHeight = tallest;
-                
-        return tallest;
+        
+        
+        
+        
+        return shelfHeight;
 
         
     }//end fillShelfByHeight
 
     public Shelf() {
+
         
     }//end shelf
+    
+    public double shelfCount(int index) {
+        
+        
+        return index;
+    }
 
     public double getShelfHeight() {
         return shelfHeight;
     }
 
-    public double getShelfNumber() {
+    public int getShelfNumber() {
         return shelfNumber;
     }
 
@@ -92,7 +104,7 @@ public class Shelf {
         this.shelfHeight = shelfHeight;
     }
 
-    public void setShelfNumber(double shelfNumber) {
+    public void setShelfNumber(int shelfNumber) {
         this.shelfNumber = shelfNumber;
     }
 

@@ -32,16 +32,21 @@ import java.util.ArrayList;
 public class Unit {
     ArrayList<Shelf> shelves = new ArrayList<Shelf>(4);
     int unitNumber;
+    int shelfOne = 1;
+    int shelfTwo = 2;
+    int shelfThree = 3;
+    int shelfFour = 4;
 
     public Unit(int unitNumber) {
         this.unitNumber = unitNumber;
+        
     }          
     
-    public Unit() {
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());                        
+    public Unit() {          
+        shelves.add(new Shelf(unitNumber, shelfOne));
+        shelves.add(new Shelf(unitNumber, shelfTwo));
+        shelves.add(new Shelf(unitNumber, shelfThree));
+        shelves.add(new Shelf(unitNumber, shelfFour));
         
     }
     
@@ -58,7 +63,7 @@ public class Unit {
         return shelves;
 
     }
-
+    
     public void setShelves(ArrayList<Shelf> shelves) {
         this.shelves = shelves;
     }
