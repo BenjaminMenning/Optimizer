@@ -36,6 +36,9 @@ public class Unit {
     int shelfTwo = 2;
     int shelfThree = 3;
     int shelfFour = 4;
+    double shelfHeight = 0;
+    double tempHight = 0;
+    double OneShelfSize = 2;
 
     public Unit(int unitNumber) {
         this.unitNumber = unitNumber;
@@ -52,8 +55,20 @@ public class Unit {
     
     public void fillShelf(ArrayList<Product> heightList) {
         for(Shelf shelf : shelves) {
-            shelf.fillShelfByHeight(heightList);             
-        }
+            
+            if(shelfHeight < 84){
+                shelfHeight = shelf.fillShelfByHeight(heightList, tempHight); 
+                if(shelfHeight < 0) {
+                   break; 
+                }
+                tempHight += (shelfHeight + OneShelfSize);
+                
+            }//end if
+            else {
+                break;
+            }
+            
+        }//end for
         unitNumber +=1;
 }
     public ArrayList<Shelf> getShelves() {

@@ -44,13 +44,13 @@ public class Shelf {
         
     }
 
-    public double fillShelfByHeight(ArrayList<Product> heightList) {
+    public double fillShelfByHeight(ArrayList<Product> heightList, double tempUnitHeight) {
         double tallest = 0;
         double listSize = 0;
         double totalProductWidth = 0;       
         
         listSize = heightList.size();
-
+        if (listSize > 0) {
         for (double i = 0; i < listSize; i++) {
             if (totalProductWidth < width) {
                 productList.add(heightList.get(0));
@@ -67,13 +67,14 @@ public class Shelf {
             }//end else            
         }//end for                                               
        
+        if(tempUnitHeight > 0){
+            shelfHeight = tempUnitHeight;
+        }
         
         
-        
-        
-        
-        return shelfHeight;
-
+        return tallest;
+        }
+        return -1;
         
     }//end fillShelfByHeight
 
