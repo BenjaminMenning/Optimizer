@@ -32,23 +32,43 @@ import java.util.ArrayList;
 public class Unit {
     ArrayList<Shelf> shelves = new ArrayList<Shelf>(4);
     int unitNumber;
+    int shelfOne = 1;
+    int shelfTwo = 2;
+    int shelfThree = 3;
+    int shelfFour = 4;
+    double shelfHeight = 0;
+    double tempHight = 0;
+    double OneShelfSize = 2;
 
     public Unit(int unitNumber) {
         this.unitNumber = unitNumber;
+        
     }          
     
-    public Unit() {
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());
-        shelves.add(new Shelf());                        
+    public Unit() {          
+        shelves.add(new Shelf(unitNumber, shelfOne));
+        shelves.add(new Shelf(unitNumber, shelfTwo));
+        shelves.add(new Shelf(unitNumber, shelfThree));
+        shelves.add(new Shelf(unitNumber, shelfFour));
         
     }
     
     public void fillShelf(ArrayList<Product> heightList) {
         for(Shelf shelf : shelves) {
-            shelf.fillShelfByHeight(heightList);             
-        }
+            
+            if(shelfHeight < 84){
+                shelfHeight = shelf.fillShelfByHeight(heightList, tempHight); 
+                if(shelfHeight < 0) {
+                   break; 
+                }
+                tempHight += (shelfHeight + OneShelfSize);
+                
+            }//end if
+            else {
+                break;
+            }
+            
+        }//end for
         unitNumber +=1;
 }
     public ArrayList<Shelf> getShelves() {
@@ -58,7 +78,7 @@ public class Unit {
         return shelves;
 
     }
-
+    
     public void setShelves(ArrayList<Shelf> shelves) {
         this.shelves = shelves;
     }
