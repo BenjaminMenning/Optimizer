@@ -2,7 +2,6 @@ package Optimizer;
 
 
 import java.io.File;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,7 +13,6 @@ import java.util.logging.Logger;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JOptionPane;
-import java.io.*;
 import java.io.PrintWriter;
 
 /** 
@@ -44,7 +42,7 @@ import java.io.PrintWriter;
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
  */
-public class Optimizer {
+public class Optimizer implements OptimizerADT {
 
     // String variables for database connectivity
     private String className = "org.sqlite.JDBC";
@@ -111,6 +109,7 @@ public class Optimizer {
 
 
     
+    @Override
     public ArrayList<Product> heightSorter(ArrayList<Product> prodList) {
         
 //        int temp = 0;
@@ -126,6 +125,7 @@ public class Optimizer {
         
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         
+    @Override
         public ArrayList<Product> widthSorter(ArrayList<Product> prodList) {
         
 //        int temp = 0;
@@ -195,6 +195,7 @@ public class Optimizer {
         }
     }
     
+    @Override
     public void connectToDatabase()
     {
         int timeout = 0;
@@ -227,6 +228,7 @@ public class Optimizer {
         }
     }
     
+    @Override
     public void addProduct(String productNumber, String productName, 
             String productType, String height, String width, String depth) 
             throws SQLException
@@ -259,6 +261,7 @@ public class Optimizer {
         }    
     }
     
+    @Override
     public void removeProduct(String productNumber) throws SQLException
     {
         Statement stmt = null;
@@ -281,6 +284,7 @@ public class Optimizer {
         }    
     }
     
+    @Override
     public ArrayList<String> getProductNumberList() throws SQLException
     {
         ArrayList<String> productNumberList = new ArrayList<String>();
@@ -308,6 +312,7 @@ public class Optimizer {
         return productNumberList;
     }
     
+    @Override
     public void addStore(String storeNumber, String storeName, 
             String totalUnits, String petUnits, String foodUnits, String 
                     clothingUnits, String cleaningUnits) 
@@ -342,6 +347,7 @@ public class Optimizer {
         }    
     }
     
+    @Override
     public void removeStore(String storeNumber) throws SQLException
     {
         Statement stmt = null;
@@ -364,6 +370,7 @@ public class Optimizer {
         }    
     }
     
+    @Override
     public ArrayList<String> getStoreNumberList() throws SQLException
     {
         ArrayList<String> storeNumberList = new ArrayList<String>();
@@ -391,6 +398,7 @@ public class Optimizer {
         return storeNumberList;
     }
     
+    @Override
     public String determineTypeID(String type) throws SQLException
     {
         connectToDatabase();
@@ -414,6 +422,7 @@ public class Optimizer {
         return typeID;
     }
 
+    @Override
     public String determineType(int typeID) throws SQLException
     {
         connectToDatabase();
@@ -438,6 +447,7 @@ public class Optimizer {
     }
 
     
+    @Override
     public String determineProductID(String productNumber) throws SQLException
     {
         connectToDatabase();
@@ -461,6 +471,7 @@ public class Optimizer {
         return productID;
     }
     
+    @Override
     public String determineStoreID(String storeNumber) throws SQLException
     {
         connectToDatabase();
@@ -484,6 +495,7 @@ public class Optimizer {
         return storeID;
     }
     
+    @Override
     public ArrayList<Product> getProductList() throws SQLException
     {
         ArrayList<Product> productList = new ArrayList<Product>();
@@ -534,6 +546,7 @@ public class Optimizer {
         return productList;
     }
     
+    @Override
     public String generateReport(boolean isWidthSort, String storeNumber, String 
             name, int totalUnits)
     {
