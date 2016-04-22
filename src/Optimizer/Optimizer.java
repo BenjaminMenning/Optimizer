@@ -476,9 +476,32 @@ public class Optimizer implements OptimizerADT {
         return productList;
     }
 
+    
+    //lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
     @Override
     public String generateReport(boolean isWidthSort, String storeNumber, String name, int totalUnits) {
-        return "";
+                    
+        //True for Width
+        //False for Height
+        fillUnits(isWidthSort);                                 
+        
+        //Creating doc to print out
+        String returnString = "";
+        returnString += "Store Number: " + storeNumber + "\n"
+                + "Total Store Units: " + totalUnits + "\n";
+        
+        for (Unit unit : Units) {
+            returnString += unit;
+        }
+                       
+        
+        try {
+            unitPrint(storeNumber, returnString);
+        } catch (IOException ex) {
+            Logger.getLogger(Optimizer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return returnString;
     }
 
     public static void main(String[] args) throws SQLException, IOException {
@@ -638,8 +661,8 @@ public class Optimizer implements OptimizerADT {
          }//end if
          */
         System.out.println("here we are");
-        fillUnits();
-        unitPrint();
+//        fillUnits();
+//        unitPrint();
 
        //Calling Print out
         //shelfPrintOut(shelfAheight, shelfBheight, shelfCheight, shelfDheight);
@@ -849,13 +872,12 @@ public class Optimizer implements OptimizerADT {
 
     }//end shelf print out   
 
-    public static void fillUnits() {
+    public static void fillUnits(boolean sortType) {
 
         Optimizer optimizer = new Optimizer();
 
         //True for Width
         //False for Height
-        sortType = true;
 
         if (!sortType) {
 
@@ -890,20 +912,12 @@ public class Optimizer implements OptimizerADT {
 
     }//end fillUnits
 
-    public static void unitPrint() throws IOException {
-        int index = 0;
-        for (int i = 0; i < Units.size(); i++) {
-            System.out.println(Units.get(i));
+    public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
-        }
-
-        PrintWriter printOut = new PrintWriter("StorePrintOut.txt");
-//        while(!Units.isEmpty()){           
-//            printOut.println(Units.get(index));
-//            Units.remove(0);
-//        }
-        printOut.println(Units.get(index));
+        PrintWriter printOut = new PrintWriter(storeNum);
+        printOut.printf(storeInfo);
         printOut.close();
+        
     }
 
 }//end class
