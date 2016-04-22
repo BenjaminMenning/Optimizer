@@ -35,57 +35,54 @@ public class Shelf {
 
     double shelfHeight;
     int shelfNumber;
-    
+
     private ArrayList<Product> productList = new ArrayList<>();
 
     public Shelf(double shelfHeight, int shelfNumber) {
         this.shelfHeight = shelfHeight;
-        this.shelfNumber = shelfNumber;        
-        
+        this.shelfNumber = shelfNumber;
+
     }
 
     public double fillShelfByHeight(ArrayList<Product> heightList, double tempUnitHeight) {
         double tallest = 0;
         double listSize = 0;
-        double totalProductWidth = 0;       
-        
+        double totalProductWidth = 0;
+
         listSize = heightList.size();
         if (listSize > 0) {
-        for (double i = 0; i < listSize; i++) {
-            if (totalProductWidth < width) {
-                productList.add(heightList.get(0));
-                totalProductWidth += heightList.get(0).getWidth();
+            for (double i = 0; i < listSize; i++) {
+                if (totalProductWidth < width) {
+                    productList.add(heightList.get(0));
+                    totalProductWidth += heightList.get(0).getWidth();
 
-                if (tallest < heightList.get(0).getHeight()) {
-                    tallest = heightList.get(0).getHeight();
-                }//end if                 
+                    if (tallest < heightList.get(0).getHeight()) {
+                        tallest = heightList.get(0).getHeight();
+                    }//end if                 
 
-                heightList.remove(0);
-            }//end if
-            else {
-                break;
-            }//end else            
-        }//end for                                               
-       
-        if(tempUnitHeight > 0){
-            shelfHeight = tempUnitHeight;
-        }
-        
-        
-        return tallest;
+                    heightList.remove(0);
+                }//end if
+                else {
+                    break;
+                }//end else            
+            }//end for                                               
+
+            if (tempUnitHeight > 0) {
+                shelfHeight = tempUnitHeight;
+            }
+
+            return tallest;
         }
         return -1;
-        
+
     }//end fillShelfByHeight
 
     public Shelf() {
 
-        
     }//end shelf
-    
+
     public double shelfCount(int index) {
-        
-        
+
         return index;
     }
 
@@ -113,43 +110,35 @@ public class Shelf {
         this.productList = productList;
     }
 
-    
-    
     @Override
     public String toString() {
-        
+
         String returnString = "";
-        
-                returnString = "Shelf Number: " + shelfNumber +
-                "\nShelf Height is: " + shelfHeight
+
+        returnString = "Shelf Number: " + shelfNumber
+                + "\nShelf Height is: " + shelfHeight
                 + "\nPlacement      Product Number      Product Name    Product Type        Product Height  Product Width   Product Depth\n";
-                
+
         String letterHeight = "";
         int prodCount = 1;
-        for(Product product : productList){
-            
-        if(shelfNumber == 1){
-            letterHeight = "A";
-        }
-        else if(shelfNumber == 2){
-            letterHeight = "B";
-        }
-        else if(shelfNumber == 3) {
-            letterHeight = "C";
-        }
-        else if(shelfNumber == 4) {
-            letterHeight = "D";
-        }
-        
+        for (Product product : productList) {
+
+            if (shelfNumber == 1) {
+                letterHeight = "A";
+            } else if (shelfNumber == 2) {
+                letterHeight = "B";
+            } else if (shelfNumber == 3) {
+                letterHeight = "C";
+            } else if (shelfNumber == 4) {
+                letterHeight = "D";
+            }
+
             returnString += letterHeight + prodCount + "\t" + product;
             prodCount++;
         }
-                
-        return returnString;                        
+
+        return returnString;
     }
-    
-    
+
     //Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth
-    
-    
 }//end class
