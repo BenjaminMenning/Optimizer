@@ -117,13 +117,35 @@ public class Shelf {
     
     @Override
     public String toString() {
-        return ("Shelf Number: " + shelfNumber +
+        
+        String returnString = "";
+        
+                returnString = "Shelf Number: " + shelfNumber +
                 "\nShelf Height is: " + shelfHeight
-                + "\nPlacement      Product Number      Product Name    Product Type        Product Height  Product Width   Product Depth\n\t" 
-                + productList + "\n\n");
+                + "\nPlacement      Product Number      Product Name    Product Type        Product Height  Product Width   Product Depth\n";
+                
+        String letterHeight = "";
+        int prodCount = 1;
+        for(Product product : productList){
+            
+        if(shelfNumber == 1){
+            letterHeight = "A";
+        }
+        else if(shelfNumber == 2){
+            letterHeight = "B";
+        }
+        else if(shelfNumber == 3) {
+            letterHeight = "C";
+        }
+        else if(shelfNumber == 4) {
+            letterHeight = "D";
+        }
         
-        
-        
+            returnString += letterHeight + prodCount + "\t" + product;
+            prodCount++;
+        }
+                
+        return returnString;                        
     }
     
     

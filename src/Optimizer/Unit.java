@@ -93,7 +93,13 @@ public class Unit {
 
     @Override
     public String toString() {
-        return String.format("\n\nUnit: " + unitNumber 
-                + "\n" + shelves);
+        
+        String returnString = "";
+        
+        for(Shelf shelf : shelves){
+            returnString += "\n\nUnit: " + unitNumber + "\n" + shelf;
+        }
+        
+        return returnString;
     }         
 }
