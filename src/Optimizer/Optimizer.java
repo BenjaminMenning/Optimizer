@@ -660,7 +660,6 @@ public class Optimizer implements OptimizerADT {
          }//end for           
          }//end if
          */
-        System.out.println("here we are");
 //        fillUnits();
 //        unitPrint();
 
@@ -715,7 +714,7 @@ public class Optimizer implements OptimizerADT {
 //
 //            }//end B forLoop
 //       }//end B if 
-        ArrayList<Product> heightList = optimizer.heightSorter(productList);
+        //ArrayList<Product> heightList = optimizer.heightSorter(productList);
 
 //        Optimizer optimizer = new Optimizer();
 //        Product product = new Product("NULL", "4J329KF3", "Test", "Pet", 10, 10, 
@@ -750,7 +749,9 @@ public class Optimizer implements OptimizerADT {
 //        }//end while
 //        
 //        
-//        
+
+        
+        
     }//end main
 
     public static void shelfPrintOut(double A, double B, double C, double D) {
