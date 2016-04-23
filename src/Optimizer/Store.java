@@ -35,7 +35,9 @@ public class Store {
     
     private String storeID;
     private String storeNumber;
+    private String storeName;
     private int totalUnits; // 50 for food 
+    
     private ArrayList<UnitType> storeUnitsTypeList = new ArrayList<UnitType>();
     private ArrayList<Product> productList = new ArrayList<Product>();
     private ArrayList<Unit> unitList = new ArrayList<Unit>();
@@ -48,6 +50,16 @@ public class Store {
     public String getStoreID()
     {
         return storeID;
+    }
+    
+    public void setStoreName(String storeName)
+    {
+        this.storeName = storeName;
+    }
+    
+    public String getStoreName()
+    {
+        return storeName;
     }
     
     public void setStoreNumber(String storeNumber)
@@ -70,34 +82,9 @@ public class Store {
         return totalUnits;
     }
     
-    public void setStoreUnitsType(ArrayList<UnitType> typeList)
-    {
-        
-    }
-    
     public ArrayList<UnitType> getStoreUnitsType()
     {
         ArrayList<UnitType> blah = new ArrayList<UnitType>();
         return blah;
     }
-
-//    public void addProduct(Product product)
-//    {
-//    }
-//
-//    public Product removeProduct(String productID)
-//    {
-//        Product product3 = new Product(0, 0, 0, "", "");
-//        return product3;
-//    }
-//    
-//    public void addUnit(Unit unit)
-//    {
-//        
-//    }
-//
-//    public void removeUnit(String unitID)
-//    {
-//        
-//    }
 }

@@ -6,12 +6,13 @@
 package Optimizer.GUI;
 
 import Optimizer.Optimizer;
+import Optimizer.Store;
 import java.sql.SQLException;
-import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
  *
  * @author JDiercks14
@@ -21,6 +22,11 @@ public class OptimEvent extends javax.swing.JPanel {
     //True = Width
     //False = Height
     public static boolean WidthOrHeight = true;
+    
+    protected ArrayList<String> storeNumberList;
+    
+    private Optimizer optimizer;
+    
     /**
      * Creates new form OptimEvent
      */
@@ -36,9 +42,23 @@ public class OptimEvent extends javax.swing.JPanel {
 //           boolean WidthOrHeight = true;
 //    }
 //    
-    public OptimEvent() {
+    public OptimEvent(Optimizer optimizerObj) throws SQLException {
         initComponents();  
-        jComboBox1.addItem("hhhhhh");
+        
+        optimizer = optimizerObj;
+        
+        // Initialize and assign store number list and labels
+        storeNumberList = optimizer.getStoreNumberList();
+
+        // Assign store number combo box information and adds list information
+//        storeNumberCB = new JComboBox(storeNumberList.toArray());
+//        storeNumberCB.setEditable(true);
+//        AutoCompleteDecorator.decorate(storeNumberCB);
+        
+//        jComboBox1.addItem("hhhhhh");
+//        jComboBox1.addI
+        jComboBox1.setModel(new DefaultComboBoxModel(storeNumberList.toArray()));
+        AutoCompleteDecorator.decorate(jComboBox1);
         
     }
 
@@ -169,17 +189,29 @@ public class OptimEvent extends javax.swing.JPanel {
 
     private void sortHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortHeightActionPerformed
         WidthOrHeight = false;
-        printOut.setText(Boolean.toString(WidthOrHeight));
+//        printOut.setText(Boolean.toString(WidthOrHeight));
         
     }//GEN-LAST:event_sortHeightActionPerformed
 
     private void optimizationCallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimizationCallActionPerformed
-        
+        String storeNum = (String) jComboBox1.getSelectedItem();
+        String storeName = "";
+        String report = "";
+        int totalUnits = 0;
+        try {
+            Store store = optimizer.getStore(storeNum);
+            storeName = store.getStoreName();
+            totalUnits = store.getTotalUnits();
+            report = optimizer.generateReport(WidthOrHeight, storeNum, storeName, totalUnits);
+            printOut.setText(report);
+        } catch (SQLException ex) {
+            Logger.getLogger(OptimEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_optimizationCallActionPerformed
 
     private void sortWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortWidthActionPerformed
         WidthOrHeight = true;        
-        printOut.setText(Boolean.toString(WidthOrHeight));
+//        printOut.setText(Boolean.toString(WidthOrHeight));
                 
     }//GEN-LAST:event_sortWidthActionPerformed
 

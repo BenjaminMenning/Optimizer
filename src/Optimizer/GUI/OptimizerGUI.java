@@ -141,7 +141,7 @@ public class OptimizerGUI
         productInputPanels.add(productRemovalPanel, productRemovalStr);
           
         //======================================================================
-        optimEvent = new OptimEvent();        
+        optimEvent = new OptimEvent(optimizer);        
         
         // Adds product input panels to tab and sets layout
         productInputTabP.add(productInputPanels);

@@ -329,6 +329,33 @@ public class Optimizer implements OptimizerADT {
             }
         }
     }
+    
+    public Store getStore(String storeNum) throws SQLException {
+        Store store = new Store();
+        String storeNumberStr = "'" + storeNum + "'";
+        Statement stmt = null;
+        String query = "SELECT *\n" +
+                        "FROM Store\n" +
+                        "WHERE storeNumber = " + storeNumberStr + "\n" +
+                        "LIMIT 1";
+        try {
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            String storeNumber = rs.getString("storeNumber");
+            String storeName = rs.getString("name");
+            int totalUnits = rs.getInt("totalUnits");
+            store.setStoreNumber(storeNumber);
+            store.setStoreName(storeName);
+            store.setTotalUnits(totalUnits);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return store;
+    }
 
     @Override
     public ArrayList<String> getStoreNumberList() throws SQLException {
@@ -483,9 +510,17 @@ public class Optimizer implements OptimizerADT {
     @Override
     public String generateReport(boolean isWidthSort, String storeNumber, String name, int totalUnits) {
                     
+        try {
+            productList = getProductList();
+        } catch (SQLException ex) {
+            Logger.getLogger(Optimizer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         //True for Width
         //False for Height
-        fillUnits(isWidthSort);                                 
+        fillUnits(isWidthSort);        
+        
+        
         
         //Creating doc to print out
         String returnString = "";
