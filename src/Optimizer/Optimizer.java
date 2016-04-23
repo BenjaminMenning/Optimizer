@@ -489,7 +489,8 @@ public class Optimizer implements OptimizerADT {
         
         //Creating doc to print out
         String returnString = "";
-        returnString += "Store Number: " + storeNumber + "\n"
+        returnString += "Store Name: " + name + "\n" 
+                + "Store Number: " + storeNumber + "\n"
                 + "Total Store Units: " + totalUnits + "\n";
         
         for (Unit unit : Units) {
@@ -534,7 +535,21 @@ public class Optimizer implements OptimizerADT {
         productList = optimizer.getProductList();
 //        System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
+       
+        
+        
+        
         System.out.println(optimizer.generateReport(true, "12345678", "store", 10));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //System.out.println(heightList.toString());
 
         /*        

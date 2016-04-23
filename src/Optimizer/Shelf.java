@@ -117,7 +117,7 @@ public class Shelf {
 
         returnString = "Shelf Number: " + shelfNumber
                 + "\nShelf Height is: " + shelfHeight
-                + "\nPlacement      Product Number      Product Name    Product Type        Product Height  Product Width   Product Depth\n";
+                + "\nPlacement       Product Number       Product Name         Product Type        Product Height  Product Width   Product Depth\n";
 
         String letterHeight = "";
         int prodCount = 1;
@@ -133,7 +133,7 @@ public class Shelf {
                 letterHeight = "D";
             }
 
-            returnString += letterHeight + prodCount + "\t" + product;
+            returnString += letterHeight + prodCount + "          " + product;
             prodCount++;
         }
 
