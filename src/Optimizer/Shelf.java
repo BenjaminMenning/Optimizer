@@ -140,5 +140,4 @@ public class Shelf {
         return returnString;
     }
 
-    //Placement\tProduct Number\tProduct Name\tProduct Type\t\tProduct Height\tProduct Width\tProduct Depth
 }//end class
