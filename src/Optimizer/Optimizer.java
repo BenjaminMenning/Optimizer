@@ -538,10 +538,9 @@ public class Optimizer implements OptimizerADT {
 
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
-        try (PrintWriter printOut = new PrintWriter(storeNum)) {
+        try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
         }//end try
         
     }//end unitPrint
-
 }//end class
