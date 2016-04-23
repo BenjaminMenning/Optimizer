@@ -24,8 +24,12 @@ import java.util.ArrayList;
  */
 
 /**
+ * This interface details all of the methods to be implemented by the Optimizer 
+ * class. It contains methods to be implemented for adding products and stores, 
+ * removing products and stores, generating a report, and many other functions. 
  *
- * @author bmenning13
+ * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * @version 04/26/2016
  */
 public interface OptimizerADT 
 {
@@ -114,60 +118,72 @@ public interface OptimizerADT
      * The store layout information includes the products contained on each 
      * shelf of each shelving unit within a store.
      * 
-     * @param isWidthSort   the 
-     * @param storeNumber
-     * @param name
-     * @param totalUnits
-     * @return
+     * @param isWidthSort   the Boolean to be assigned as true if width sort, 
+     *                      false otherwise
+     * @param storeNumber   the String to be assigned as the store number
+     * @param name  the String to be assigned as the name of the store
+     * @param totalUnits    the int to be assigned as the total shelving units
+     * @return  String  returns a String containing the report information
      */
     public String generateReport(boolean isWidthSort, String storeNumber, String name, int totalUnits);
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * This method retrieves a list of products from the database.
+     * 
+     * @return  ArrayList<Product>  returns an ArrayList containing the products
+     * @throws SQLException if SQL database encounters an error
      */
     public ArrayList<Product> getProductList() throws SQLException;
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * This method retrieves a list of product numbers from the database.
+     * 
+     * @return  ArrayList<String>  returns an ArrayList containing the product
+     *                             numbers
+     * @throws SQLException if SQL database encounters an error
      */
     public ArrayList<String> getProductNumberList() throws SQLException;
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * This method retrieves a list of store numbers from the database.
+     * 
+     * @return  ArrayList<String>  returns an ArrayList containing the store
+     *                             numbers
+     * @throws SQLException if SQL database encounters an error
      */
     public ArrayList<String> getStoreNumberList() throws SQLException;
 
     /**
-     *
-     * @param prodList
-     * @return
+     * This method sorts a list of products by height.
+     * 
+     * @param prodList  the ArrayList to be assigned as the product list
+     * @return  ArrayList<Product> returns an ArrayList containing the products
      */
     public ArrayList<Product> heightSorter(ArrayList<Product> prodList);
 
     /**
-     *
-     * @param productNumber
-     * @throws SQLException
+     * This method removes a product from the database by performing an SQL 
+     * query with the product number of the product.
+     * 
+     * @param productNumber the String to be assigned as the product number
+     * @throws SQLException if SQL database encounters an error
      */
     public void removeProduct(String productNumber) throws SQLException;
 
     /**
-     *
-     * @param storeNumber
-     * @throws SQLException
+     * This method removes a store from the database by performing an SQL 
+     * query with the store number of the store.
+     * 
+     * @param storeNumber the String to be assigned as the store number
+     * @throws SQLException if SQL database encounters an error
      */
     public void removeStore(String storeNumber) throws SQLException;
 
     /**
-     *
-     * @param prodList
-     * @return
+     * This method sorts a list of products by width.
+     * 
+     * @param prodList  the ArrayList to be assigned as the product list
+     * @return  ArrayList<Product> returns an ArrayList containing the products
      */
     public ArrayList<Product> widthSorter(ArrayList<Product> prodList);    
 }

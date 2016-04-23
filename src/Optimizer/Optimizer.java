@@ -33,9 +33,11 @@ import java.io.PrintWriter;
  * user to optimize the product layout for a store and display a report
  * containing the layout information.
  */
+
 /**
- * This class contains a main method that allows a user to run the Optimizer
- * shelving space management program.
+ * This class implements all of the methods detailed by the Optimizer interface.
+ * It contains method implementations for adding products and stores, removing 
+ * products and stores, generating a report, and many other functions. 
  *
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016
@@ -532,6 +534,7 @@ public class Optimizer implements OptimizerADT {
         productList = optimizer.getProductList();
 //        System.out.println(productList.toString());
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
+        System.out.println(optimizer.generateReport(true, "12345678", "store", 10));
         //System.out.println(heightList.toString());
 
         /*        
