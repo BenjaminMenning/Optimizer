@@ -38,11 +38,20 @@ public class Unit {
     double tempHight = 0;
     double OneShelfSize = 2;
 
+    /**
+     * This constructor initializes the unit number
+     * 
+     * @param unitNumber The unit number for the Unit
+     */
     public Unit(int unitNumber) {
         this.unitNumber = unitNumber;
 
     }
 
+    /**
+     * This is the default constructor, it adds shelves to the unit
+     * 
+     */
     public Unit() {
         shelves.add(new Shelf(unitNumber, shelfOne));
         shelves.add(new Shelf(unitNumber, shelfTwo));
@@ -51,6 +60,11 @@ public class Unit {
 
     }
 
+    /**
+     * This method fills shelves based on the height list
+     * 
+     * @param heightList This is the new height list
+     */
     public void fillShelf(ArrayList<Product> heightList) {
         for (Shelf shelf : shelves) {
 
@@ -70,20 +84,40 @@ public class Unit {
         unitNumber += 1;
     }
 
+    /**
+     * This method returns the shelves of the unit
+     * 
+     * @return The list of shelves of the unit
+     */
     public ArrayList<Shelf> getShelves() {
 
         return shelves;
 
     }
 
+    /**
+     * This method sets the list shelves based on the passed parameter
+     * 
+     * @param shelves The new list of shelves
+     */
     public void setShelves(ArrayList<Shelf> shelves) {
         this.shelves = shelves;
     }
 
+    /**
+     * This method sets the unit number based on the passed parameter
+     * 
+     * @param unitNumber This is the new unit number
+     */
     public void setUnitNumber(int unitNumber) {
         this.unitNumber = unitNumber;
     }
 
+    /**
+     * This method returns the unit number
+     * 
+     * @return The unit number
+     */
     public int getUnitNumber() {
         return unitNumber;
     }

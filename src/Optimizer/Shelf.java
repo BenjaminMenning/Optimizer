@@ -38,12 +38,26 @@ public class Shelf {
 
     private ArrayList<Product> productList = new ArrayList<>();
 
+    /**
+     * This constructor initializes the shelf height and shelf number
+     * 
+     * @param shelfHeight The height of the shelf
+     * @param shelfNumber The number of the shelf, used as an identifier
+     */
     public Shelf(double shelfHeight, int shelfNumber) {
         this.shelfHeight = shelfHeight;
         this.shelfNumber = shelfNumber;
 
     }
 
+    /**
+     * This method fills a shelf by height by sorting the product list then
+     * adding products shortest to tallest in the shelf
+     * 
+     * @param heightList This is a list of products sorted by height
+     * @param tempUnitHeight This is used for setting the shelf height
+     * @return tallest product height as shelf height
+     */
     public double fillShelfByHeight(ArrayList<Product> heightList, double tempUnitHeight) {
         double tallest = 0;
         double listSize = 0;
@@ -77,35 +91,74 @@ public class Shelf {
 
     }//end fillShelfByHeight
 
+    /**
+     * This is the default constructor, it does not initialize any data members
+     */
     public Shelf() {
 
     }//end shelf
 
+    /**
+     * This returns the index as the shelf count
+     * 
+     * @param index The index of ? //Ben or Jarrud, this method does nothing?
+     * @return index As shelf count?
+     */
     public double shelfCount(int index) {
 
         return index;
     }
 
+    /**
+     * This method returns the shelf height
+     * 
+     * @return The shelf height
+     */
     public double getShelfHeight() {
         return shelfHeight;
     }
 
+    /**
+     * This method returns the shelf number
+     * 
+     * @return The shelf number
+     */
     public int getShelfNumber() {
         return shelfNumber;
     }
 
+    /**
+     * This method returns the product list
+     * 
+     * @return The product list
+     */
     public ArrayList<Product> getProductList() {
         return productList;
     }
 
+    /**
+     * This method sets the shelf height based on the passed parameter
+     * 
+     * @param shelfHeight This is the new shelf height
+     */
     public void setShelfHeight(double shelfHeight) {
         this.shelfHeight = shelfHeight;
     }
 
+    /**
+     * This method sets the shelf number based on the passed parameter
+     * 
+     * @param shelfNumber This is the new shelf number
+     */
     public void setShelfNumber(int shelfNumber) {
         this.shelfNumber = shelfNumber;
     }
 
+    /**
+     * This method sets the product list based on the passed parameter
+     * 
+     * @param productList This is the new product list
+     */
     public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
     }

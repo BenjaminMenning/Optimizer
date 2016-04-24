@@ -42,46 +42,91 @@ public class Store {
     private ArrayList<Product> productList = new ArrayList<Product>();
     private ArrayList<Unit> unitList = new ArrayList<Unit>();
     
+    /**
+     * This method sets the store id to the passed parameter
+     * 
+     * @param storeID This is the new store ID
+     */
     public void setStoreID(String storeID)
     {
         this.storeID = storeID;
     }
     
+    /**
+     * This method returns the store id of the store
+     * 
+     * @return The Store ID
+     */
     public String getStoreID()
     {
         return storeID;
     }
     
+    /**
+     * This method sets the store name based on the passed parameter
+     * 
+     * @param storeName The new store name 
+     */
     public void setStoreName(String storeName)
     {
         this.storeName = storeName;
     }
     
+    /**
+     * This method returns the store name
+     * 
+     * @return The name of the store
+     */
     public String getStoreName()
     {
         return storeName;
     }
     
+    /**
+     * This method sets the store number based on the passed parameter
+     * 
+     * @param storeNumber The new store number
+     */
     public void setStoreNumber(String storeNumber)
     {
         this.storeNumber = storeNumber;
     }
     
+    /**
+     * This method returns the store number
+     * 
+     * @return the store number
+     */
     public String getStoreNumber()
     {
         return storeNumber;
     }
     
+    /**
+     * This method sets the total number of units
+     * 
+     * @param totalUnits the new number of units
+     */
     public void setTotalUnits(int totalUnits)
     {
         this.totalUnits = totalUnits;
     }
     
+    /**
+     * This method returns the total number of units 
+     * 
+     * @return the total number of units
+     */
     public int getTotalUnits()
     {
         return totalUnits;
     }
     
+    /**
+     * This method returns the store units types
+     * 
+     * @return the stores units types
+     */
     public ArrayList<UnitType> getStoreUnitsType()
     {
         ArrayList<UnitType> blah = new ArrayList<UnitType>();
