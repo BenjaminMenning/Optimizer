@@ -19,6 +19,7 @@ public class Tests {
         System.out.println(determineProductIDTest());
         System.out.println(removeProductTest());
         System.out.println(addStoreConfigurationTest());
+        System.out.println(generateReportTest());
         System.out.println(determineStoreIDTest());
         System.out.println(removeStoreConfigurationTest());
         System.out.println(getProductListTest());
@@ -141,5 +142,16 @@ public class Tests {
             return e.getMessage() + "\n******************************************\n" + "\nDetermine Store ID Failed" + "\n******************************************\n";
         }
         return "\n******************************************\n" +"Determine Store ID Test Passed" + "\n******************************************\n";
+    }
+    
+    public static String generateReportTest() {
+        try {
+            System.out.println(optimizer.generateReport(true, "ST101", "Test Store", 100));
+            System.out.println(optimizer.generateReport(true, "ST101", "Test Store", 100));   
+        }
+        catch (Exception e) {
+            return e.getMessage() + "\n******************************************\n" + "\nGenerate Report Test Failed" + "\n******************************************\n";
+        }
+        return "\n******************************************\n" +"Generate Report Test Passed" + "\n******************************************\n";
     }
 }
