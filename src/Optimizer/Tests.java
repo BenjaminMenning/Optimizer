@@ -56,7 +56,7 @@ public class Tests {
         System.out.println(determineProductIDTest());
         
         //Run add store test and print results
-        System.out.println(addStoreConfigurationTest());
+        System.out.println(addStoreTest());
         
         
         //Run generate report test and print results
@@ -69,7 +69,7 @@ public class Tests {
         System.out.println(determineStoreIDTest());
         
         //Run remove store test and print results
-        System.out.println(removeStoreConfigurationTest());
+        System.out.println(removeStoreTest());
         
         //Run get produclt list test and print results
         System.out.println(getProductListTest());
@@ -133,17 +133,17 @@ public class Tests {
 
      * @return Status of test
      */
-    public static String addStoreConfigurationTest() {
+    public static String addStoreTest() {
         System.out.println("Testing Add Store");
         try {
             optimizer.addStore("ST101", "Test Store", "100", "25", "25", "25", 
                     "25");
         }
         catch (Exception e) {
-            return e.getMessage() + DIVIDER + "\nAdd Store Configuration Test"
+            return e.getMessage() + DIVIDER + "\nAdd Store  Test"
                     + " Failed" + DIVIDER;
         }
-        return DIVIDER + "Add Store Configuration Test Passed" + DIVIDER;
+        return DIVIDER + "Add Store  Test Passed" + DIVIDER;
     }
     
     /**
@@ -151,16 +151,16 @@ public class Tests {
      * 
      * @return Status of test
      */
-    public static String removeStoreConfigurationTest() {
+    public static String removeStoreTest() {
         System.out.println("Testing Remove Store");
         try {
             optimizer.removeStore("ST101");
         }
         catch (Exception e) {
-            return e.getMessage() + DIVIDER + "Remove Store Configuration Test "
+            return e.getMessage() + DIVIDER + "Remove Store  Test "
                     + "Failed" + DIVIDER;
         }
-        return DIVIDER + "Remove Store Configuration Test Passed" + DIVIDER;
+        return DIVIDER + "Remove Store  Test Passed" + DIVIDER;
     }
     
     /**
