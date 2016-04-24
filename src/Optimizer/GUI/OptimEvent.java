@@ -1,7 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * 
+ * Date:            04/26/2016 
+ *                
+ * Course:          CS 410 - 01, Spring 2016
+ * 
+ * Assignment:      Software Engineering Project
+ * 
+ * Description:     This program is a shelving space management program that 
+ *                  utilizes an SQLite relational database management system to 
+ *                  allow users to input and view information about stores and 
+ *                  products, and then uses that information to optimize the 
+ *                  shelving space utilized for each product within a store.
+ *                  It allows users to add and remove products or stores and 
+ *                  also allows a user to optimize the product layout for a 
+ *                  store and display a report containing the layout 
+ *                  information. 
  */
 package Optimizer.GUI;
 
@@ -13,9 +27,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
-/**
- *
- * @author JDiercks14
+
+/** 
+ * This class contains a GUI JPanel for performing the optimizing functions and
+ * generating a report. It was created using NetBeans GUI builder.
+ * 
+ * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * @version 04/26/2016 
  */
 public class OptimEvent extends javax.swing.JPanel {
    
@@ -23,27 +41,19 @@ public class OptimEvent extends javax.swing.JPanel {
     //False = Height
     public static boolean WidthOrHeight = true;
     
+    // Contains list of store numbers to choose from
     protected ArrayList<String> storeNumberList;
     
+    // Optimizer object declared
     private Optimizer optimizer;
     
     /**
-     * Creates new form OptimEvent
+     * This is the constructor of the JPanel. It initializes all of the 
+     * components within it and uses an Optimizer object.
+     * 
+     * @param optimizerObj  the Optimizer object to be assigned
+     * @throws SQLException if SQL database error occurs
      */
-//   public static void main(String[] args) {
-//    java.awt.EventQueue.invokeLater(new Runnable() {
-//          public void run() {
-//               OptimEvent frame = new OptimEvent();
-//               frame.setVisible(true);
-//          }
-//    });                
-//} 
-//    public static void main(String[] argv){
-//           boolean WidthOrHeight = true;
-//    }
-//    
-    
-    
     public OptimEvent(Optimizer optimizerObj) throws SQLException {
         initComponents();  
         
@@ -53,12 +63,6 @@ public class OptimEvent extends javax.swing.JPanel {
         storeNumberList = optimizer.getStoreNumberList();
 
         // Assign store number combo box information and adds list information
-//        storeNumberCB = new JComboBox(storeNumberList.toArray());
-//        storeNumberCB.setEditable(true);
-//        AutoCompleteDecorator.decorate(storeNumberCB);
-        
-//        jComboBox1.addItem("hhhhhh");
-//        jComboBox1.addI
         jComboBox1.setModel(new DefaultComboBoxModel(storeNumberList.toArray()));
         AutoCompleteDecorator.decorate(jComboBox1);
         
@@ -179,8 +183,6 @@ public class OptimEvent extends javax.swing.JPanel {
 
     private void sortHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortHeightActionPerformed
         WidthOrHeight = false;
-//        printOut.setText(Boolean.toString(WidthOrHeight));
-        
     }//GEN-LAST:event_sortHeightActionPerformed
 
     private void optimizationCallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optimizationCallActionPerformed
@@ -204,14 +206,9 @@ public class OptimEvent extends javax.swing.JPanel {
 
     private void sortWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortWidthActionPerformed
         WidthOrHeight = true;        
-//        printOut.setText(Boolean.toString(WidthOrHeight));
-                
     }//GEN-LAST:event_sortWidthActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        //pass optimizer as a permater
-        //they all pass as permaiter then call list
-        //Make get store method ,, reteave store based on what was created ,, used to create object        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
 

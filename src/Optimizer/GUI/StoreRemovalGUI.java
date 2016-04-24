@@ -37,8 +37,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 
 /** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
+ * This class constructs the user interface for the Store removal tab within
+ * the OptimizerGUI class JFrame.
  * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
@@ -50,12 +50,16 @@ public class StoreRemovalGUI
         
     // String and ArrayList of string variables for store numbers
     protected String storeNumberStr = "Store Number:";
-    private String errorStr = "";
+    protected String errorStr = "<html><body><p style='width: "
+            + "200px;'>The Store could not be removed from the database. Please try "
+            + "again. </p></body></html>";
     protected String invalidEntryStr0 =  "<html><body><p style='width: "
             + "200px;'>Invalid value(s) entered. Fields cannot be empty and "
             + "values entered must match those that are listed. Please "
             + "try again.</p></body></html>";
-    protected String validEntryStr0;
+    protected String validEntryStr0 = "<html><body><p style='width: "
+            + "200px;'>The item has been successfully removed from the "
+            + "database.</p></body></html>";
     protected String validEntryStr1 = "<html><body><p style='width: "
             + "200px;'>'";
     protected String validEntryStr2
@@ -74,7 +78,7 @@ public class StoreRemovalGUI
     private JPanel removeStoreButtonP;
 
     
-    // Declares medical store database object
+    // Declares Optimizer object
     protected Optimizer optimizer;
     protected StoreRemovalGUI storeRemovalGUI;
     
@@ -83,10 +87,10 @@ public class StoreRemovalGUI
 
     
     /**
-     * This constructor contains a parameter to assign the medical store 
-     * database for the store input GUI panels.
+     * This constructor contains a parameter to assign the Optimizer object for 
+     * the store removal GUI panels.
      * 
-     * @param optimizerObj the medical store DB to be assigned
+     * @param optimizerObj the Optimizer object to be assigned
      */
     public StoreRemovalGUI(Optimizer optimizerObj)
     {
@@ -94,13 +98,13 @@ public class StoreRemovalGUI
     }
     
     /**
-     * This method creates and retrieves the components for a store input 
+     * This method creates and retrieves the components for a store removal 
      * panel.
      * 
-     * @return JPanel   returns the JPanel containing store number components
+     * @return JPanel   returns the JPanel containing GUI components
      * @throws SQLException if SQL database encounters an error
      */
-    public JPanel createInputPanel() throws SQLException
+    public JPanel createRemovalPanel() throws SQLException
     {
         // Initialize and assign base panel layout
         basePanel = new JPanel();
@@ -132,44 +136,38 @@ public class StoreRemovalGUI
     }
     
     /** 
-     * This class performs the action of adding a store by pressing
+     * This class performs the action of removing a store by pressing
      * a button.
      * 
-     * @author Benjamin Menning, Dan Johnson, Holly Schreader
-     * @version 05/05/2015
+     * @author Benjamin Menning
+     * @version 04/26/2016
      */
     private class removeStoreButtonHandler implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-            errorStr = "";
             String storeNumber = storeNumberCB.getSelectedItem().toString();
             try 
             {
                 String storeID = optimizer.determineStoreID(storeNumber);
-//                isFieldEmpty(storeNumber);
-//                validateClinicNum(storeNumber);
-//                validateBirthDate(depth);
-//                validateSize(height);
-//                validateSize(width);
                 optimizer.removeStore(storeNumber);
                 clearFields();
                 storeNumberCB.removeItem(storeNumber);
                 JOptionPane.showMessageDialog(null, validEntryStr0, 
                         "Success", JOptionPane.INFORMATION_MESSAGE);        
             } 
-            catch (SQLException /*| ParseException | IllegalArgumentException*/ ex) 
+            catch (SQLException | IllegalArgumentException /*| ParseException*/ ex) 
             {
                 JOptionPane.showMessageDialog(null, errorStr, 
                         "Error", JOptionPane.ERROR_MESSAGE);        
-                Logger.getLogger(StoreInputGUI.class.getName()).log(Level.SEVERE, 
-                        null, ex);
+//                Logger.getLogger(StoreInputGUI.class.getName()).log(Level.SEVERE, 
+//                        null, ex);
             }
         }
     }
     
     /**
-     * This method clears the fields within the input panel.
+     * This method clears the fields within the removal panel.
      * 
      */
     public void clearFields()

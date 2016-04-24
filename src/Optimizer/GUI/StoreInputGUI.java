@@ -40,8 +40,8 @@ import javax.swing.SwingConstants;
  */
 
 /** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
+ * This class constructs the user interface for the Product input tab within
+ * the OptimizerGUI class JFrame.
  * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
@@ -60,7 +60,7 @@ public class StoreInputGUI
     
     // String variables for JLabels
     private String storeIDStr = "Store ID:";
-    private String storeNumberStr = "Store Number(######):";
+    private String storeNumberStr = "Store Number(#######):";
     private String nameStr = "Name:";
     private String totalUnitsStr = "Total Units:";
     private String totalPetUnitsStr = "Total Pet Units:";
@@ -73,17 +73,15 @@ public class StoreInputGUI
     private String[] addStoreStrings = {"Add Store", "Remove Store"};
     
     // String variables for error messages
-    private String errorStr = "";
+    protected String errorStr = "<html><body><p style='width: "
+            + "200px;'>The Store could not be added to the database. Please try "
+            + "again. </p></body></html>";
     private String emptyFieldsStr =  "<html><body><p style='totalClothingUnits: "
             + "200px;'>Invalid value(s) entered. Fields cannot be empty. "
             + "Please try again.</p></body></html>";
-    private String invalidClinNumStr =  "<html><body><p style='totalClothingUnits: "
-            + "200px;'>Invalid clinic number entered. Clinic number must be "
-            + "numeric and follow the format 'X-XXX-XXX'. Please try again."
-            + "</p></body></html>";
-    private String invalidBirthDateStr =  "<html><body><p style='totalClothingUnits: "
-            + "200px;'>Invalid birth date entered. Birth date must "
-            + "follow the format 'YYYY-MM-DD'. Please try again."
+    private String invalidStoreNumStr =  "<html><body><p style='totalClothingUnits: "
+            + "200px;'>Invalid store number entered. Store number must be "
+            + "numeric and follow the format 'XXXXXX'. Please try again."
             + "</p></body></html>";
     private String invalidSizeStr =  "<html><body><p style='totalClothingUnits: "
             + "200px;'>Invalid totalFoodUnits and/or totalClothingUnits entered. Height and totalClothingUnits "
@@ -122,7 +120,7 @@ public class StoreInputGUI
     private JPanel totalCleaningUnitsP;
     private JPanel addStoreButtonP;
             
-    // Medical Clinic database object
+    // Optimizer object
     private Optimizer optimizer;
     
     /**
@@ -253,51 +251,29 @@ public class StoreInputGUI
     }
     
     /**
-     * This method determines whether or not a clinic number is valid and throws
+     * This method determines whether or not a store number is valid and throws
      * an IllegalArgumentException if it isn't.
      * 
-     * @param clinicNum the String of the clinic number to be validated
+     * @param storeNum the String of the store number to be validated
      */
-    public void validateClinicNum(String clinicNum)
+    public void validateStoreNum(String storeNum)
     {
-        String clinicNumStr = clinicNum;
-        Pattern clinicNumPtn = Pattern.compile("\\d{1}-\\d{3}-\\d{3}");
-        Matcher matcher = clinicNumPtn.matcher(clinicNumStr);  
+        String storeNumStr = storeNum;
+        Pattern storeNumPtn = Pattern.compile("\\d{6}");
+        Matcher matcher = storeNumPtn.matcher(storeNumStr);  
         if(!matcher.matches())
         {
-            errorStr = invalidClinNumStr;
+            errorStr = invalidStoreNumStr;
             throw new IllegalArgumentException();
         }
     }
     
-    /**
-     * This method determines whether or not a birth date is valid and throws
-     * an ParseException if it isn't.
-     * 
-     * @param totalPetUnits the String of the birth date to be validated
-     * @throws java.text.ParseException if birth date is invalid
-     */
-    public void validateBirthDate(String totalPetUnits) throws ParseException
-    {
-        String totalPetUnitsStr = totalPetUnits;
-        String dateFmtStr = "yyyy-MM-dd";
-        SimpleDateFormat simpDateFmt = new SimpleDateFormat(dateFmtStr);
-        try 
-        {
-            simpDateFmt.parse(totalPetUnitsStr);
-        } 
-        catch (ParseException e) 
-        {
-            errorStr = invalidBirthDateStr;
-            throw e;
-        }
-    }
     
     /**
-     * This method determines whether or not a totalFoodUnits/totalClothingUnits is valid and throws
+     * This method determines whether or not a height/width is valid and throws
      * an NumberFormatException if it isn't.
      * 
-     * @param size the String of the totalFoodUnits or totalClothingUnits to be validated
+     * @param size the String of the width or height to be validated
      */
     public void validateSize(String size)
     {
@@ -321,8 +297,8 @@ public class StoreInputGUI
      * This class performs the action of adding a store by pressing
      * a button.
      * 
-     * @author Benjamin Menning, Dan Johnson, Holly Schreader
-     * @version 05/05/2015
+     * @author Benjamin Menning
+     * @version 04/26/2016
      */
     private class addStoreButtonHandler implements ActionListener
     {
@@ -346,31 +322,28 @@ public class StoreInputGUI
                 isFieldEmpty(totalFoodUnits);
                 isFieldEmpty(totalClothingUnits);
                 isFieldEmpty(totalCleaningUnits);
-//                validateClinicNum(storeNumber);
-//                validateBirthDate(totalPetUnits);
-//                validateSize(totalFoodUnits);
-//                validateSize(totalClothingUnits);
+                validateStoreNum(storeNumber);
                 optimizer.addStore(storeNumber, name, totalUnits, totalPetUnits, totalFoodUnits, 
                         totalClothingUnits, totalCleaningUnits);
                 clearAddStoreTF();
                 JOptionPane.showMessageDialog(null, validEntryStr0, 
                         "Success", JOptionPane.INFORMATION_MESSAGE);        
             } 
-            catch (SQLException /*| ParseException | IllegalArgumentException*/ ex) 
+            catch (SQLException | IllegalArgumentException/*| ParseException */ ex) 
             {
                 JOptionPane.showMessageDialog(null, errorStr, 
                         "Error", JOptionPane.ERROR_MESSAGE);        
-                Logger.getLogger(StoreInputGUI.class.getName()).log(Level.SEVERE, 
-                        null, ex);
+//                Logger.getLogger(StoreInputGUI.class.getName()).log(Level.SEVERE, 
+//                        null, ex);
             }
         }
     }
     
     /**
-     * This constructor contains a parameter to assign the medical clinic 
-     * database for the store input GUI.
+     * This constructor contains a parameter to assign the Optimizer object
+     *  for the store input GUI.
      * 
-     * @param medicalClinicObj the medical clinic DB to be assigned
+     * @param optimizerObj the Optimizer object to be assigned
      */
     public StoreInputGUI(Optimizer optimizerObj)
     {

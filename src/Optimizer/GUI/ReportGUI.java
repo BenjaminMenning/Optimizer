@@ -1,23 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * Author:          Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * 
+ * Date:            04/26/2016 
+ *                
+ * Course:          CS 410 - 01, Spring 2016
+ * 
+ * Assignment:      Software Engineering Project
+ * 
+ * Description:     This program is a shelving space management program that 
+ *                  utilizes an SQLite relational database management system to 
+ *                  allow users to input and view information about stores and 
+ *                  products, and then uses that information to optimize the 
+ *                  shelving space utilized for each product within a store.
+ *                  It allows users to add and remove products or stores and 
+ *                  also allows a user to optimize the product layout for a 
+ *                  store and display a report containing the layout 
+ *                  information. 
  */
 package Optimizer.GUI;
 
-/**
- *
- * @author Ben
+/** 
+ * This class contains a GUI JFrame for displaying a report. It was created 
+ * using NetBeans GUI builder.
+ * 
+ * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
+ * @version 04/26/2016 
  */
 public class ReportGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form ReportGUI
+     * This is a constructor that initializes the components within the JFrame
+     * of the ReportGUI class.
      */
     public ReportGUI() {
         initComponents();
     }
     
+    /**
+     * This method displays the report information String within the JTextArea
+     * of the JFrame.
+     * 
+     * @param report    the String to be assigned as the report
+     */
     public void displayReport(String report)
     {
         jTextArea1.setText(report);
@@ -61,7 +85,10 @@ public class ReportGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * @param args the command line arguments
+     * This method is a main method that allows a user to run the ReportGUI 
+     * JFrame.
+     * 
+     * @param args
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

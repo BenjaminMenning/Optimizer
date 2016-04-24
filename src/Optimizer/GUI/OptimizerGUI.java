@@ -33,8 +33,9 @@ import javax.swing.JTabbedPane;
  */
 
 /** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
+ * This class constructs the overall user interface for the Optimizer shelving 
+ * space management program and implements a wide array of different components 
+ * into a single JFrame.
  * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
@@ -59,6 +60,7 @@ public class OptimizerGUI
     
     private JPanel optimEvent;
 
+    // Store JPanel variables
     private JPanel storeInputComboP;
     private JPanel storeInputPanel;
     private JPanel storeRemovalPanel;
@@ -68,21 +70,15 @@ public class OptimizerGUI
     // Frame that contains all components
     private JFrame optimizerGUIFrame;
         
-    // Medical clinic database object
+    // Optimizer object
     private Optimizer optimizer;
     
-    // Product input GUI objects
+    // Product and Store input / removal GUI objects
     private ProductInputGUI productInputGUI;
     private ProductRemovalGUI productRemovalGUI;
     private StoreInputGUI storeInputGUI;
     private StoreRemovalGUI storeRemovalGUI;
-            
-    // JButton variables
-    private JButton searchProductB;
-    
-    // JButton Handlers
-//    private searchProductButtonHandler searchProductH;
-    
+                
     // Product Input JComboBox and String variables
     private JComboBox productInputCombo = new JComboBox();
     private String productComboBoxItems[] = {productInputStr, 
@@ -92,15 +88,14 @@ public class OptimizerGUI
         storeRemovalStr};
     
     /**
-     * This constructor contains a parameter to assign the medical clinic 
-     * database and create the main frame that utilizes all of the GUI 
-     * components.
+     * This constructor contains a parameter to assign the Optimizer object
+     * and create the main frame that utilizes all of the GUI components.
      * 
-     * @param medicalClinicObj the medical clinic DB to be assigned
+     * @param optimizerObj the Optimizer object to be assigned
      */
     public OptimizerGUI(Optimizer optimizerObj) throws SQLException
     {
-        // Initializes medical clinic database object and connects to database
+        // Initializes Optimizer object and connects to database
         optimizer = optimizerObj;
         optimizer.connectToDatabase();
         
@@ -133,7 +128,7 @@ public class OptimizerGUI
         
         // Initializes product input panels
         productInputPanel = productInputGUI.createProductInputPanel();
-        productRemovalPanel = productRemovalGUI.createInputPanel();
+        productRemovalPanel = productRemovalGUI.createRemovalPanel();
         
         // Creates and adds panels for product inputs
         productInputPanels = new JPanel(new CardLayout());
@@ -173,7 +168,7 @@ public class OptimizerGUI
         
         // Initializes store input panels
         storeInputPanel = storeInputGUI.createStoreInputPanel();
-        storeRemovalPanel = storeRemovalGUI.createInputPanel();
+        storeRemovalPanel = storeRemovalGUI.createRemovalPanel();
         
         // Creates and adds panels for store inputs
         storeInputPanels = new JPanel(new CardLayout());

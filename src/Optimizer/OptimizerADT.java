@@ -185,5 +185,14 @@ public interface OptimizerADT
      * @param prodList  the ArrayList to be assigned as the product list
      * @return  ArrayList<Product> returns an ArrayList containing the products
      */
-    public ArrayList<Product> widthSorter(ArrayList<Product> prodList);    
+    public ArrayList<Product> widthSorter(ArrayList<Product> prodList);
+    
+    /**
+     * This method retrieves a Store object from the database.
+     * 
+     * @param storeNum  the String to be assigned as the store number
+     * @return  Store   returns a Store object
+     * @throws SQLException if SQL database encounters an error
+     */
+    public Store getStore(String storeNum) throws SQLException;
 }

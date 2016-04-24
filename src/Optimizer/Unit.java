@@ -19,12 +19,13 @@ import java.util.ArrayList;
  * user to optimize the product layout for a store and display a report
  * containing the layout information.
  */
-/**
- * This class contains a main method that allows a user to run the Optimizer
- * shelving space management program.
- *
+/** 
+ * This class contains methods for getting and setting the information of a 
+ * Unit object including the Unit shelves, unit number. It also contains a 
+ * method for filling shelves.
+ * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
- * @version 04/26/2016
+ * @version 04/26/2016 
  */
 public class Unit {
 

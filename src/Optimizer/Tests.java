@@ -19,7 +19,8 @@ package Optimizer;
  */
 /**
  * This class contains a main method that allows testing of methods in the 
- * program.
+ * program. It prints out the status of each test and whether or not it passed
+ * or failed.
  *
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016

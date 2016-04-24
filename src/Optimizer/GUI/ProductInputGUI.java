@@ -40,8 +40,8 @@ import javax.swing.SwingConstants;
  */
 
 /** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
+ * This class constructs the user interface for the Product input tab within
+ * the OptimizerGUI class JFrame.
  * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
@@ -72,20 +72,18 @@ public class ProductInputGUI
     private String[] addProductStrings = {"Add Product", "Remove Product"};
     
     // String variables for error messages
-    private String errorStr = "";
+    protected String errorStr = "<html><body><p style='width: "
+            + "200px;'>The Product could not be added to the database. Please try "
+            + "again. </p></body></html>";
     private String emptyFieldsStr =  "<html><body><p style='width: "
             + "200px;'>Invalid value(s) entered. Fields cannot be empty. "
             + "Please try again.</p></body></html>";
-    private String invalidClinNumStr =  "<html><body><p style='width: "
-            + "200px;'>Invalid clinic number entered. Clinic number must be "
-            + "numeric and follow the format 'X-XXX-XXX'. Please try again."
-            + "</p></body></html>";
-    private String invalidBirthDateStr =  "<html><body><p style='width: "
-            + "200px;'>Invalid birth date entered. Birth date must "
-            + "follow the format 'YYYY-MM-DD'. Please try again."
+    private String prodNumStr =  "<html><body><p style='width: "
+            + "200px;'>Invalid product number entered. Product number must be "
+            + "numeric and follow the format 'XXXXXXX'. Please try again."
             + "</p></body></html>";
     private String invalidSizeStr =  "<html><body><p style='width: "
-            + "200px;'>Invalid height and/or width entered. Height and width "
+            + "200px;'>Invalid height/width/depth entered. Height/width/depth "
             + "must be whole numbers and only three digits long. Please try "
             + "again.</p></body></html>";
     private String validEntryStr0 = "<html><body><p style='width: "
@@ -120,7 +118,7 @@ public class ProductInputGUI
     private JPanel depthP;
     private JPanel addProductButtonP;
             
-    // Medical Clinic database object
+    // Optimizer object
     private Optimizer optimizer;
     
     /**
@@ -247,51 +245,29 @@ public class ProductInputGUI
     }
     
     /**
-     * This method determines whether or not a clinic number is valid and throws
+     * This method determines whether or not a product number is valid and throws
      * an IllegalArgumentException if it isn't.
      * 
-     * @param clinicNum the String of the clinic number to be validated
+     * @param productNum the String of the product number to be validated
      */
-    public void validateClinicNum(String clinicNum)
+    public void validateProductNum(String productNum)
     {
-        String clinicNumStr = clinicNum;
-        Pattern clinicNumPtn = Pattern.compile("\\d{1}-\\d{3}-\\d{3}");
-        Matcher matcher = clinicNumPtn.matcher(clinicNumStr);  
+        String productNumStr = productNum;
+        Pattern productNumPtn = Pattern.compile("\\d{8}");
+        Matcher matcher = productNumPtn.matcher(productNumStr);  
         if(!matcher.matches())
         {
-            errorStr = invalidClinNumStr;
+            errorStr = prodNumStr;
             throw new IllegalArgumentException();
         }
     }
     
-    /**
-     * This method determines whether or not a birth date is valid and throws
-     * an ParseException if it isn't.
-     * 
-     * @param depth the String of the birth date to be validated
-     * @throws java.text.ParseException if birth date is invalid
-     */
-    public void validateBirthDate(String depth) throws ParseException
-    {
-        String depthStr = depth;
-        String dateFmtStr = "yyyy-MM-dd";
-        SimpleDateFormat simpDateFmt = new SimpleDateFormat(dateFmtStr);
-        try 
-        {
-            simpDateFmt.parse(depthStr);
-        } 
-        catch (ParseException e) 
-        {
-            errorStr = invalidBirthDateStr;
-            throw e;
-        }
-    }
     
     /**
-     * This method determines whether or not a height/width is valid and throws
+     * This method determines whether or not a height/width/depth is valid and throws
      * an NumberFormatException if it isn't.
      * 
-     * @param size the String of the height or width to be validated
+     * @param size the String of the height depth or width to be validated
      */
     public void validateSize(String size)
     {
@@ -315,8 +291,8 @@ public class ProductInputGUI
      * This class performs the action of adding a product by pressing
      * a button.
      * 
-     * @author Benjamin Menning, Dan Johnson, Holly Schreader
-     * @version 05/05/2015
+     * @author Benjamin Menning
+     * @version 04/26/2016
      */
     private class addProductButtonHandler implements ActionListener
     {
@@ -339,31 +315,31 @@ public class ProductInputGUI
                 isFieldEmpty(depth);
                 isFieldEmpty(height);
                 isFieldEmpty(width);
-//                validateClinicNum(productNumber);
-//                validateBirthDate(depth);
-//                validateSize(height);
-//                validateSize(width);
+                validateSize(depth);
+                validateSize(height);
+                validateSize(width);
+                validateProductNum(productNumber);
                 optimizer.addProduct(productNumber, name, typeID, depth, height, 
                         width);
                 clearAddProductTF();
                 JOptionPane.showMessageDialog(null, validEntryStr0, 
                         "Success", JOptionPane.INFORMATION_MESSAGE);        
             } 
-            catch (SQLException /*| ParseException | IllegalArgumentException*/ ex) 
+            catch (SQLException | IllegalArgumentException /*| ParseException*/ ex) 
             {
                 JOptionPane.showMessageDialog(null, errorStr, 
                         "Error", JOptionPane.ERROR_MESSAGE);        
-                Logger.getLogger(ProductInputGUI.class.getName()).log(Level.SEVERE, 
-                        null, ex);
+//                Logger.getLogger(ProductInputGUI.class.getName()).log(Level.SEVERE, 
+//                        null, ex);
             }
         }
     }
     
     /**
-     * This constructor contains a parameter to assign the medical clinic 
-     * database for the product input GUI.
+     * This constructor contains a parameter to assign the Optimizer 
+     * object for the product input GUI.
      * 
-     * @param medicalClinicObj the medical clinic DB to be assigned
+     * @param optimizerObj the Optimizer object to be assigned
      */
     public ProductInputGUI(Optimizer optimizerObj)
     {

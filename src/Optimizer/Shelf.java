@@ -20,8 +20,8 @@ import java.util.ArrayList;
  * containing the layout information.
  */
 /**
- * This class contains a main method that allows a user to run the Optimizer
- * shelving space management program.
+ * This class contains methods for getting and setting the information of a 
+ * Shelf object including methods for the ProductList, Shelf height, and number.
  *
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016

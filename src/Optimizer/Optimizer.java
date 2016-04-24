@@ -84,12 +84,11 @@ public class Optimizer implements OptimizerADT {
     }
 
     /**
-     * This class is a comparator that compares PCB objects. It orders the PCBs
-     * with the shortest job at the front of the queue. It is used by the SJF
-     * algorithm.
+     * This class is a comparator that compares Product objects. It orders the Products
+     * with the shortest Product at the front of the queue. 
      *
      * @author Benjamin Menning
-     * @version 02/14/2016
+     * @version 04/26/2016
      */
     public class HeightComparator implements Comparator<Product> {
 
@@ -109,12 +108,11 @@ public class Optimizer implements OptimizerADT {
     }
 
     /**
-     * This class is a comparator that compares PCB objects. It orders the PCBs
-     * with the shortest job at the front of the queue. It is used by the SJF
-     * algorithm.
+     * This class is a comparator that compares Product objects. It orders the Products
+     * with the thinnest Product at the front of the queue. 
      *
      * @author Benjamin Menning
-     * @version 02/14/2016
+     * @version 04/26/2016
      */
     public class WidthComparator implements Comparator<Product> {
 
@@ -278,6 +276,7 @@ public class Optimizer implements OptimizerADT {
         }
     }
     
+    @Override
     public Store getStore(String storeNum) throws SQLException {
         Store store = new Store();
         String storeNumberStr = "'" + storeNum + "'";
@@ -501,13 +500,13 @@ public class Optimizer implements OptimizerADT {
         
     }//end main
   
-    
+    /**
+     * This method fills the shelves of the units with products.
+     * 
+     * @param sortType  sorts by width if true, height if false
+     */
     public static void fillUnits(boolean sortType) {
         Optimizer optimizer = new Optimizer();
-
-        //True for Width
-        //False for Height
-
         if (!sortType) {
 
             ArrayList<Product> heightList = optimizer.heightSorter(productList);
@@ -531,16 +530,21 @@ public class Optimizer implements OptimizerADT {
                 Units.add(tempUnit);
                 unitCount++;
             }//end while
-
         }
-
     }//end fillUnits
 
+    /**
+     * This method prints out the contents of each unit within a store to a 
+     * text file. 
+     * 
+     * @param storeNum  the String to be assigned as the store number
+     * @param storeInfo the String to be assigned as the store information
+     * @throws IOException  if PrintWriter encounters an error writing file out
+     */
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
         try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
         }//end try
-        
     }//end unitPrint
 }//end class

@@ -18,8 +18,9 @@ package Optimizer;
  * containing the layout information.
  */
 /**
- * This class contains a main method that allows a user to run the Optimizer
- * shelving space management program.
+ * This class contains methods for getting and setting the information of a 
+ * Product object, including the Product name, number, type, width, depth, and
+ * height.
  *
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016

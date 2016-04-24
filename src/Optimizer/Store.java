@@ -25,8 +25,8 @@ import java.util.ArrayList;
  */
 
 /** 
- * This class contains a main method that allows a user to run the Optimizer 
- * shelving space management program.
+ * This class contains methods for getting and setting the information of a 
+ * Store object including the Store name, number, and total units.
  * 
  * @author Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
  * @version 04/26/2016 
