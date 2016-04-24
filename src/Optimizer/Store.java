@@ -38,7 +38,6 @@ public class Store {
     private String storeName;
     private int totalUnits; // 50 for food 
     
-    private ArrayList<UnitType> storeUnitsTypeList = new ArrayList<UnitType>();
     private ArrayList<Product> productList = new ArrayList<Product>();
     private ArrayList<Unit> unitList = new ArrayList<Unit>();
     
@@ -120,16 +119,5 @@ public class Store {
     public int getTotalUnits()
     {
         return totalUnits;
-    }
-    
-    /**
-     * This method returns the store units types
-     * 
-     * @return the stores units types
-     */
-    public ArrayList<UnitType> getStoreUnitsType()
-    {
-        ArrayList<UnitType> blah = new ArrayList<UnitType>();
-        return blah;
     }
 }
