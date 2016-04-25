@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JOptionPane;
 import java.io.PrintWriter;
+import java.util.Calendar;
 
 /**
  * Author: Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
@@ -173,7 +174,6 @@ public class Optimizer implements OptimizerADT {
                 + width + ", "
                 + depth + ")";
         try {
-            System.out.println(query);
             stmt = connection.createStatement();
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -192,7 +192,6 @@ public class Optimizer implements OptimizerADT {
         String query = "DELETE FROM Product"
                 + "\nWHERE ProductNumber = " + productNumberStr;
         try {
-            System.out.println(query);
             stmt = connection.createStatement();
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -245,7 +244,6 @@ public class Optimizer implements OptimizerADT {
                 + clothingUnits + ", "
                 + cleaningUnits + ")";
         try {
-            System.out.println(query);
             stmt = connection.createStatement();
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -264,7 +262,6 @@ public class Optimizer implements OptimizerADT {
         String query = "DELETE FROM Store"
                 + "\nWHERE StoreNumber = " + storeNumberStr;
         try {
-            System.out.println(query);
             stmt = connection.createStatement();
             stmt.executeUpdate(query);
         } catch (SQLException e) {
@@ -335,7 +332,6 @@ public class Optimizer implements OptimizerADT {
         String typeStr = "'" + type + "'";
         String query = "SELECT typeID \nFROM Type"
                 + "\nWHERE type = " + typeStr;
-        System.out.println(query);
         stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = stmt.executeQuery(query);
         if (!rs.next()) {
@@ -353,7 +349,6 @@ public class Optimizer implements OptimizerADT {
         String typeIDStr = "'" + typeID + "'";
         String query = "SELECT type \nFROM Type"
                 + "\nWHERE typeID = " + typeIDStr;
-        System.out.println(query);
         stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = stmt.executeQuery(query);
         if (!rs.next()) {
@@ -371,7 +366,6 @@ public class Optimizer implements OptimizerADT {
         String productNumberStr = "'" + productNumber + "'";
         String query = "SELECT productID \nFROM Product"
                 + "\nWHERE productNumber = " + productNumberStr;
-        System.out.println(query);
         stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = stmt.executeQuery(query);
         if (!rs.next()) {
@@ -389,7 +383,6 @@ public class Optimizer implements OptimizerADT {
         String storeNumberStr = "'" + storeNumber + "'";
         String query = "SELECT storeID \nFROM Store"
                 + "\nWHERE storeNumber = " + storeNumberStr;
-        System.out.println(query);
         stmt = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = stmt.executeQuery(query);
         if (!rs.next()) {
@@ -543,7 +536,12 @@ public class Optimizer implements OptimizerADT {
      */
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
-        try (PrintWriter printOut = new PrintWriter(storeNum)) {
+            Calendar calendar = Calendar.getInstance();
+            java.util.Date now = calendar.getTime();
+            storeNum += calendar;
+            storeNum += now;             
+
+        try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
         }//end try
     }//end unitPrint
