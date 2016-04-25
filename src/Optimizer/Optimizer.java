@@ -543,7 +543,7 @@ public class Optimizer implements OptimizerADT {
      */
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
-        try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
+        try (PrintWriter printOut = new PrintWriter(storeNum)) {
             printOut.printf(storeInfo);
         }//end try
     }//end unitPrint
