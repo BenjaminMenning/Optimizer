@@ -543,6 +543,7 @@ public class Optimizer implements OptimizerADT {
 
         try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
+            printOut.close();
         }//end try
     }//end unitPrint
 }//end class
