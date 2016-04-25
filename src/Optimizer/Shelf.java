@@ -99,10 +99,10 @@ public class Shelf {
     }//end shelf
 
     /**
-     * This returns the index as the shelf count
+     * This method is currently unused
      * 
-     * @param index The index of ? //Ben or Jarrud, this method does nothing?
-     * @return index As shelf count?
+     * @param index passed parameter to be returned
+     * @return index
      */
     public double shelfCount(int index) {
 
