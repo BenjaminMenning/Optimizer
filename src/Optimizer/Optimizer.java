@@ -465,20 +465,7 @@ public class Optimizer implements OptimizerADT {
 
     }
 
-    public static void main(String[] args) throws SQLException, IOException {       
-        
-        boolean done = false;
-        double maxWidth = 48;
-        double maxHeight = 84;
-        double totalProductWidth = 0;
-        double shelfHeight = 0;
-        double individuelShelfHeight = 2;
-        double tallest = 0;
-
-        double shelfAheight = 0;
-        double shelfBheight = 0;
-        double shelfCheight = 0;
-        double shelfDheight = 0;
+    public static void main(String[] args) throws SQLException, IOException {              
 
         Optimizer optimizer = new Optimizer();
 
