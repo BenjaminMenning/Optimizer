@@ -15,7 +15,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JOptionPane;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Author: Jarrud Diercks, Zach Ellefson, Seema Mane, Benjamin Menning
@@ -457,11 +459,12 @@ public class Optimizer implements OptimizerADT {
             Logger.getLogger(Optimizer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return returnString;
+        return returnString;                
+
     }
 
-    public static void main(String[] args) throws SQLException, IOException {
-
+    public static void main(String[] args) throws SQLException, IOException {       
+        
         boolean done = false;
         double maxWidth = 48;
         double maxHeight = 84;
@@ -488,6 +491,8 @@ public class Optimizer implements OptimizerADT {
         ArrayList<Product> widthList = optimizer.heightSorter(productList);
         
         System.out.println(optimizer.generateReport(true, "12345678", "store", 10));
+        
+        Units.clear();
         
     }//end main
   
@@ -534,14 +539,14 @@ public class Optimizer implements OptimizerADT {
      */
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
-            Calendar calendar = Calendar.getInstance();
-//            java.util.Date now = calendar.getTime();
-            storeNum += calendar;
-//            storeNum += now;             
+        
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        storeNum += timeStamp;
 
         try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
             printOut.close();
         }//end try
     }//end unitPrint
+        
 }//end class
