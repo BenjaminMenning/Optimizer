@@ -459,6 +459,8 @@ public class Optimizer implements OptimizerADT {
             Logger.getLogger(Optimizer.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        Units.clear();
+        
         return returnString;                
 
     }
@@ -492,7 +494,7 @@ public class Optimizer implements OptimizerADT {
         
         System.out.println(optimizer.generateReport(true, "12345678", "store", 10));
         
-        Units.clear();
+ 
         
     }//end main
   
@@ -540,7 +542,7 @@ public class Optimizer implements OptimizerADT {
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
         
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        String timeStamp = new SimpleDateFormat("-yyyy.MM.dd.HH.mm.ss").format(new Date());
         storeNum += timeStamp;
 
         try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
