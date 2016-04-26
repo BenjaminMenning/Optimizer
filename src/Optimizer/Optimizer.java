@@ -438,9 +438,7 @@ public class Optimizer implements OptimizerADT {
         
         //True for Width
         //False for Height
-        fillUnits(isWidthSort);        
-        
-        
+        fillUnits(isWidthSort);                        
         
         //Creating doc to print out
         String returnString = "";
@@ -537,9 +535,9 @@ public class Optimizer implements OptimizerADT {
     public static void unitPrint(String storeNum, String storeInfo) throws IOException {
 
             Calendar calendar = Calendar.getInstance();
-            java.util.Date now = calendar.getTime();
+//            java.util.Date now = calendar.getTime();
             storeNum += calendar;
-            storeNum += now;             
+//            storeNum += now;             
 
         try (PrintWriter printOut = new PrintWriter(storeNum + ".txt")) {
             printOut.printf(storeInfo);
